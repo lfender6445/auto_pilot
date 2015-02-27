@@ -13,3 +13,5 @@ group :development do
     gem 'pry-debugger'
   end
 end
+
+gem 'ruby-stackoverflow'
