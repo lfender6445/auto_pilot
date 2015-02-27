@@ -21,6 +21,8 @@ module AutoPilot
       end
       answers = filtered(answers)
       question_ids = answers.map(&:question_id)
+      # TODO: pass something like the following to doc parser
+      # aq_obj = answers.map {|answer| {question: answer.question_id, id: answer.answer_id}}
     end
 
     # NOTES
