@@ -8,8 +8,9 @@ module AutoPilot
 
     def initialize(doc)
       @h1       = to_markdown doc.title_html
-      @question = to_markdown doc.title_html
+      @question = to_markdown doc.question_html
       @answer   = to_markdown doc.answer_html
+      write_md_file
     end
 
     private
@@ -18,7 +19,7 @@ module AutoPilot
       ReverseMarkdown.convert html
     end
 
-    def md
+    def md_template
       @markdown ||= <<-EOS
         #{h1}
         #{question}
@@ -28,7 +29,7 @@ module AutoPilot
 
     def write_md_file(folder=DEFAULT_BLOG_FOLDER)
       system 'mkdir', '-p', folder
-      File.open("#{folder}/index.md", 'w') { |file| file.write(md) }
+      File.open("#{folder}/index.md", 'w') { |file| file.write(md_template) }
     end
   end
 end
