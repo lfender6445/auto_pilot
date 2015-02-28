@@ -1,6 +1,10 @@
 # AutoPilot
 
-Convert your stackoverflow.com profile to a github blog
+use this ruby gem to convert your [stackoverflow](http://www.stackoverflow.com/) profile to a [jekyll blog](https://help.github.com/articles/using-jekyll-with-pages/)
+
+
+# usage
+supports conversion to html or [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 
 ## Installation
 
