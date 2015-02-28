@@ -2,7 +2,7 @@ require "ruby-stackoverflow"
 
 require_relative "auto_pilot/request"
 require_relative "auto_pilot/document_parser"
-require_relative "auto_pilot/markdown_convert"
+require_relative "auto_pilot/markdown_converter"
 
 module AutoPilot
   def get_answers(user='', options={})
