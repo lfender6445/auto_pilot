@@ -6,7 +6,7 @@ require_relative "auto_pilot/markdown_converter"
 
 module AutoPilot
   def get_answers(user='', options={})
-    # id stubs
+    # TODO: id stubs, replace with API
     question_ids = [19348076]
     answer_ids   = [25536701]
     parsed_documents = []

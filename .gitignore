@@ -27,3 +27,4 @@ mkmf.log
 coverage
 *.swp
 *.dump
+/blog/
