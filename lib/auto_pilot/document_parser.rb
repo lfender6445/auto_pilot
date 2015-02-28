@@ -14,7 +14,7 @@ module AutoPilot
       doc.css(xml_map[:h1]).inner_html
     end
 
-    def title_html
+    def title_text
       doc.css(xml_map[:h1]).text
     end
 

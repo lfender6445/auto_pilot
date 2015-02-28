@@ -2,9 +2,10 @@ require "ruby-stackoverflow"
 
 require_relative "auto_pilot/request"
 require_relative "auto_pilot/document_parser"
+require_relative "auto_pilot/markdown_convert"
 
 module AutoPilot
-  def answers_for(user, options={})
+  def get_answers(user='', options={})
     # id stubs
     question_ids = [19348076]
     answer_ids   = [25536701]
@@ -12,13 +13,12 @@ module AutoPilot
     question_ids.each do |id|
       page_with_my_answer = "http://stackoverflow.com/questions/#{id}/"
       doc = Request.fetch page_with_my_answer
-      parsed_doc = DocumentParser.new doc, id, answer_ids.first
-      parsed_documents << doc
+      parsed_doc = DocumentParser.new(doc, id, answer_ids.first)
+      parsed_documents << parsed_doc
+    end
+    parsed_documents.each do |doc|
+      MarkdownConverter.new doc
     end
   end
-
-
-  module_function :answers_for
-
-
+  module_function :get_answers
 end
