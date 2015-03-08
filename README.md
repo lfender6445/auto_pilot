@@ -1,4 +1,7 @@
 # AutoPilot
+[![Code Climate](https://codeclimate.com/github/lfender6445/auto_pilot/badges/gpa.svg)](https://codeclimate.com/github/lfender6445/auto_pilot)
+[![Test Coverage](https://codeclimate.com/github/lfender6445/auto_pilot/badges/coverage.svg)](https://codeclimate.com/github/lfender6445/auto_pilot)
+
 
 use this ruby gem to convert your [stackoverflow](http://www.stackoverflow.com/) profile to a [jekyll blog](https://help.github.com/articles/using-jekyll-with-pages/)
 
@@ -40,3 +43,5 @@ create config file and object
 support date range restriction
 support html conversion
 
+# api
+api.stackexchange.com/2.1

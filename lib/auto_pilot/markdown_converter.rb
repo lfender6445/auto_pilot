@@ -26,6 +26,7 @@ module AutoPilot
       #{front_matter}
       #{h1}
       #{question}
+      #{delimiter}
       #{answer}
       BLOCK
     end
@@ -41,6 +42,10 @@ module AutoPilot
       tags: []
       ---
       BLOCK
+    end
+
+    def delimiter
+      '--------------------------------------- '
     end
 
     def write_md_file(folder = DEFAULT_BLOG_FOLDER)
