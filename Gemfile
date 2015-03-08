@@ -14,3 +14,5 @@ group :development do
     gem 'pry-debugger'
   end
 end
+
+ gem "codeclimate-test-reporter", group: :test, require: nil

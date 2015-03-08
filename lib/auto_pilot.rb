@@ -8,10 +8,10 @@ require_relative 'auto_pilot/template_helper'
 require_relative 'auto_pilot/html_converter'
 
 module AutoPilot
-  def get_answers(_user = '', options = { file_type: 'md' })
+  def get_answers(user = '', options = {})
     # TODO: id stubs, replace with API
-    question_ids = [19_348_076]
-    answer_ids   = [25_536_701]
+    question_ids = [19348076]
+    answer_ids   = [25536701]
     parsed_documents = []
     question_ids.each do |id|
       page_with_my_answer = "http://stackoverflow.com/questions/#{id}/"
