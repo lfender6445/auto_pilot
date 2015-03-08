@@ -29,8 +29,6 @@ module AutoPilot
       def logger
         @logger ||= new 'log/development.log'
       end
-
     end
   end
 end
-

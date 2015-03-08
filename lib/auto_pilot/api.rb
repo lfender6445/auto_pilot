@@ -1,17 +1,16 @@
 module AutoPilot
   class Api
-
     attr_reader :user, :options
 
     def initialize(user, options = {})
-      raise 'must supply valid user' if user.nil?
+      fail 'must supply valid user' if user.nil?
       @user    = user
       @options = options
 
       # TODO: move to configuration class
       # date  = options[:date] || get_todays_date
       pages = options[:page] || 1 || Array(1..3)
-      user_id = RubyStackoverflow.users({inname: user}).data.first.user_id
+      user_id = RubyStackoverflow.users(inname: user).data.first.user_id
       answers = []
       pages.each do |page|
         response = RubyStackoverflow.users_with_answers([user_id], page: page)
@@ -40,7 +39,7 @@ module AutoPilot
         answers = answers.flatten.uniq
         answers.select { |answer| answer.score > 0 }
       else
-        raise 'could not find answers for given user'
+        fail 'could not find answers for given user'
       end
     end
   end

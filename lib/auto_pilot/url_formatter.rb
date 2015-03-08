@@ -12,7 +12,5 @@ module AutoPilot
     def path_with_leading_slash(str)
       str[/^\//] ? str : "/#{str}"
     end
-
   end
 end
-

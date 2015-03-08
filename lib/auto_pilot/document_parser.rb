@@ -1,13 +1,19 @@
 require 'nokogiri'
 module AutoPilot
   class DocumentParser
-
     attr_reader :doc, :question_id, :answer_id
     def initialize(doc, question_id, answer_id)
       @doc         = Nokogiri::HTML(doc)
       @question_id = question_id
       @answer_id   = answer_id
-      title_html
+    end
+
+    def xml_map
+      @xml_map ||= {
+        h1:       '#question-header h1 .question-hyperlink',
+        question: '#question .post-text',
+        answer:   "#answer-#{answer_id} .post-text"
+      }
     end
 
     def title_html
@@ -32,14 +38,6 @@ module AutoPilot
 
     def answer_text
       doc.css(xml_map[:answer]).text
-    end
-
-    def xml_map
-      @xml_map ||= {
-        h1:       '#question-header h1 .question-hyperlink',
-        question: '#question .post-text',
-        answer:   "#answer-#{answer_id} .post-text"
-      }
     end
   end
 end

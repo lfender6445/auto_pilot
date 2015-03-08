@@ -11,4 +11,3 @@ require_relative '../lib/auto_pilot'
 require_relative 'support/common'
 
 MiniTest.autorun
-

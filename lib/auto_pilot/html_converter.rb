@@ -1,39 +1,34 @@
 require 'reverse_markdown'
 module AutoPilot
-  class MarkdownConverter
+  class HtmlConverter
     attr_reader :doc, :h1, :question, :answer
 
-    DEFAULT_BLOG_FOLDER  =  './blog' # TODO: create this folder if it doesn't exist?
+    DEFAULT_BLOG_FOLDER  =  './blog'
 
     def initialize(doc)
       @h1       = to_markdown doc.title_html
       @question = to_markdown doc.question_html
       @answer   = to_markdown doc.answer_html
-      write_md_file
+      write_html_file
     end
 
     private
 
-    def to_markdown(html)
-      ReverseMarkdown.convert html
+    def to_html(html)
+      html
     end
 
-    def md_template
-      @markdown ||= <<-EOS
+    def html_template
+      @html ||= <<-EOS
         #{h1}
         #{question}
         #{answer}
       EOS
     end
 
-    # TODO: simplify
-    def file_name
-      Time.now.to_s.split(' ').first
-    end
-
     def write_md_file(folder = DEFAULT_BLOG_FOLDER)
       system 'mkdir', '-p', folder
-      File.open("#{folder}/index.md", 'w') { |file| file.write(md_template) }
+      File.open("#{folder}/index.html", 'w') { |file| file.write(html_template) }
     end
   end
 end
