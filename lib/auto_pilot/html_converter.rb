@@ -1,6 +1,7 @@
-require 'reverse_markdown'
+require_relative 'template_helper'
 module AutoPilot
   class HtmlConverter
+    include AutoPilot::TemplateHelper
     attr_reader :doc, :h1, :question, :answer
 
     DEFAULT_BLOG_FOLDER  =  './blog'
@@ -26,9 +27,11 @@ module AutoPilot
       EOS
     end
 
+    # TODO: base this on initial options
     def write_md_file(folder = DEFAULT_BLOG_FOLDER)
       system 'mkdir', '-p', folder
-      File.open("#{folder}/index.html", 'w') { |file| file.write(html_template) }
+      new_file =  file_name(h1)
+      File.open("#{folder}/#{new_file}.html", 'w') { |file| file.write(html_template) }
     end
   end
 end

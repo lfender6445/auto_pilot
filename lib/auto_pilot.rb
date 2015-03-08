@@ -1,8 +1,11 @@
 require 'ruby-stackoverflow'
 
+require_relative 'core/string'
 require_relative 'auto_pilot/request'
 require_relative 'auto_pilot/document_parser'
 require_relative 'auto_pilot/markdown_converter'
+require_relative 'auto_pilot/template_helper'
+require_relative 'auto_pilot/html_converter'
 
 module AutoPilot
   def get_answers(_user = '', options = { file_type: 'md' })
@@ -18,9 +21,9 @@ module AutoPilot
     end
     parsed_documents.each do |doc|
       if options[:file_type] == 'html'
-        MarkdownConverter.new doc
-      else
         HtmlConverter.new doc
+      else
+        MarkdownConverter.new doc
       end
     end
   end

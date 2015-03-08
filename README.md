@@ -36,7 +36,7 @@ TODO: Write usage instructions here
 
 ## todo
 
-
+create config file and object
 support date range restriction
 support html conversion
 

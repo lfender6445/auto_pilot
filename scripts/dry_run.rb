@@ -3,11 +3,11 @@ require 'reverse_markdown'
 require_relative '../lib/auto_pilot'
 
 blog_file = 'blog/index.md'
-system 'rm', '-f', blog_file
+system 'rm', '-f', '*'
 
 AutoPilot.get_answers.first
-
-f = File.open(blog_file, 'r')
+blog_file = `ls blog`.strip
+f = File.open("blog/#{blog_file}", 'r')
 f.each_line do |line|
   puts line
 end
