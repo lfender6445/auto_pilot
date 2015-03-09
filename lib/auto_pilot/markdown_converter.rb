@@ -6,7 +6,7 @@ module AutoPilot
     include AutoPilot::TemplateHelper
     attr_reader :doc, :h1, :question, :answer
 
-    DEFAULT_BLOG_FOLDER  =  './blog' # TODO: create this folder if it doesn't exist?
+    DEFAULT_BLOG_FOLDER  =  './stackoverflow'
 
     def initialize(doc)
       @h1       = to_markdown doc.title_html
@@ -23,7 +23,7 @@ module AutoPilot
 
     def md_template
       @markdown ||= <<-BLOCK.unindent
-      #{front_matter}
+      #{front_matter unless AutoPilot.configuration.disable_front_matter}
       #{h1}
       #{question}
       #{delimiter}
@@ -44,12 +44,8 @@ module AutoPilot
       BLOCK
     end
 
-    def delimiter
-      '--------------------------------------- '
-    end
-
-    def write_md_file(folder = DEFAULT_BLOG_FOLDER)
-      system 'mkdir', '-p', folder
+    def write_md_file(folder = AutoPilot.configuration.folder)
+      system 'mkdir', '-p', (folder || DEFAULT_BLOG_FOLDER)
       new_file =  file_name(h1)
       File.open("#{folder}/#{new_file}.md", 'w') { |file| file.write(md_template) }
     end

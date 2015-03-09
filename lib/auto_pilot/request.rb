@@ -36,9 +36,9 @@ module AutoPilot
     def log_request(url, response)
       if response.code != 200
         @error = response.code
-        Log.red "Request failure trying to download #{url}, status #{response.code}"
+        Log.red "request failure trying to download #{url}, status #{response.code}"
       else
-        Log.green "Downloading #{url}"
+        Log.green "- downloading #{url}"
       end
     end
   end

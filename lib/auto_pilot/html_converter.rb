@@ -23,13 +23,14 @@ module AutoPilot
       @html ||= <<-EOS
         #{h1}
         #{question}
+        #{delimiter}
         #{answer}
       EOS
     end
 
     # TODO: base this on initial options
-    def write_md_file(folder = DEFAULT_BLOG_FOLDER)
-      system 'mkdir', '-p', folder
+    def write_html_file(folder = AutoPilot.configuration.folder)
+      system 'mkdir', '-p', (folder || DEFAULT_BLOG_FOLDER)
       new_file =  file_name(h1)
       File.open("#{folder}/#{new_file}.html", 'w') { |file| file.write(html_template) }
     end

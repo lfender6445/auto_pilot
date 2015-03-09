@@ -10,7 +10,7 @@ require_relative '../lib/auto_pilot'
 
 require_relative 'support/common'
 
-require "codeclimate-test-reporter"
+require 'codeclimate-test-reporter'
 CodeClimate::TestReporter.start
 
 MiniTest.autorun

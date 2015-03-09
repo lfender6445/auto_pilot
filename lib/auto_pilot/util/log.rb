@@ -27,7 +27,7 @@ module AutoPilot
       private
 
       def logger
-        @logger ||= new 'log/development.log'
+        @logger ||= new 'log/auto_pilot.log'
       end
     end
   end

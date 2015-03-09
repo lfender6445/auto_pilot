@@ -8,14 +8,6 @@ module AutoPilot
       @answer_id   = answer_id
     end
 
-    def xml_map
-      @xml_map ||= {
-        h1:       '#question-header h1 .question-hyperlink',
-        question: '#question .post-text',
-        answer:   "#answer-#{answer_id} .post-text"
-      }
-    end
-
     def title_html
       doc.css(xml_map[:h1]).inner_html
     end
@@ -38,6 +30,16 @@ module AutoPilot
 
     def answer_text
       doc.css(xml_map[:answer]).text
+    end
+
+    private
+
+    def xml_map
+      @xml_map ||= {
+        h1:       '#question-header h1 .question-hyperlink',
+        question: '#question .post-text',
+        answer:   "#answer-#{answer_id} .post-text"
+      }
     end
   end
 end

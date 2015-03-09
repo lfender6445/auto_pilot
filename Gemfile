@@ -15,4 +15,4 @@ group :development do
   end
 end
 
- gem "codeclimate-test-reporter", group: :test, require: nil
+gem 'codeclimate-test-reporter', group: :test, require: nil

@@ -1,6 +1,7 @@
 require 'ruby-stackoverflow'
 
 require_relative 'core/string'
+require_relative 'auto_pilot/configure'
 require_relative 'auto_pilot/request'
 require_relative 'auto_pilot/document_parser'
 require_relative 'auto_pilot/markdown_converter'
@@ -8,24 +9,33 @@ require_relative 'auto_pilot/template_helper'
 require_relative 'auto_pilot/html_converter'
 
 module AutoPilot
-  def get_answers(user = '', options = {})
-    # TODO: id stubs, replace with API
-    question_ids = [19348076]
-    answer_ids   = [25536701]
-    parsed_documents = []
-    question_ids.each do |id|
-      page_with_my_answer = "http://stackoverflow.com/questions/#{id}/"
-      doc = Request.fetch page_with_my_answer
-      parsed_doc = DocumentParser.new(doc, id, answer_ids.first)
-      parsed_documents << parsed_doc
+  class << self
+    BASE_URL = 'http://stackoverflow.com/questions'
+
+    def get_answers(_user = '', _options = {})
+      # TODO: id stubs, replace with API
+      question_ids = [19_348_076]
+      answer_ids   = [25_536_701]
+      parsed_documents = []
+      question_ids.each do |id|
+        doc = Request.fetch page_with_my_answer(id)
+        parsed_documents << DocumentParser.new(doc, id, answer_ids.first)
+      end
+      parsed_documents
     end
-    parsed_documents.each do |doc|
-      if options[:file_type] == 'html'
-        HtmlConverter.new doc
-      else
-        MarkdownConverter.new doc
+
+    def page_with_my_answer(id)
+      "#{BASE_URL}/#{id}/"
+    end
+
+    def write_files(parsed_documents)
+      parsed_documents.each do |doc|
+        if AutoPilot.configuration.format == :html
+          HtmlConverter.new doc
+        else
+          MarkdownConverter.new doc
+        end
       end
     end
   end
-  module_function :get_answers
 end

@@ -1,0 +1,142 @@
+#!/usr/bin/env ruby
+
+require 'pry' if ENV['DEBUG']
+
+$LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
+
+begin
+  require 'auto_pilot'
+rescue LoadError
+  require 'rubygems'
+  require 'auto_pilot'
+end
+
+require 'fileutils'
+
+def get_root
+  Gem::Specification.find_by_name('auto_pilot').gem_dir
+rescue Gem::LoadError
+  Dir.pwd
+end
+
+ROOT = get_root
+
+class Application
+  CONF_TEMPLATE = 'auto_pilot_config.rb'
+
+  def initialize
+    show_banner
+    ask_user_for_configuration
+    download_answers_and_write_files
+  end
+
+  private
+
+  def ask_user_for_configuration
+    if File.exist?("#{ROOT}/#{CONF_TEMPLATE}")
+      # ask_for_user
+      log.green "found existing configuration at #{ROOT}/#{CONF_TEMPLATE}"
+      load_configuration
+    else
+      log.green 'do you want to create a configuration file? y/n'
+      answer = $stdin.gets.chomp
+      if answer == 'y'
+        add_configuration_file
+        load_configuration
+        update_config_with_user
+      else
+        use_default_configuration
+      end
+    end
+  end
+
+  def update_config_with_user
+    user = ask_for_user
+    update_config_with_answer if user.nil? || user == ''
+    template = "#{ROOT}/#{CONF_TEMPLATE}"
+    text = File.read(template)
+    new_contents = text.gsub(/username/, AutoPilot.configuration.user)
+    File.open(template, 'w') { |file| file.puts new_contents }
+    reload_config
+    validate_config
+  end
+
+  def validate_config
+  end
+
+  def load_configuration
+    load "#{ROOT}/#{CONF_TEMPLATE}"
+    log.green 'loaded configuration'
+  end
+  alias_method :reload_config, :load_configuration
+
+  def use_default_configuration
+    AutoPilot.configure do |config|
+      config.user   = ask_for_user
+      config.format = [:md]
+      config.folder = "#{ROOT}/stackoverflow"
+      config.disable_front_matter = false
+    end
+  end
+
+  def ask_for_user
+    log.green 'enter a stackoverflow username:'
+    answer = $stdin.gets.chomp
+    if answer.nil? or answer == ''
+      log.red '- invalid username, try again'
+      ask_for_user
+    else
+      AutoPilot.configuration.user = answer
+    end
+  end
+
+  def copy_with_path(src, dst)
+    FileUtils.mkdir_p(File.dirname(dst))
+    FileUtils.cp(src, dst)
+  end
+
+  def add_configuration_file
+    template = "#{ROOT}/lib/auto_pilot/templates/auto_pilot_config.rb"
+    copy_with_path(template, CONF_TEMPLATE)
+    log.green "created ./#{CONF_TEMPLATE}"
+    update_gitignore
+  end
+
+  def update_gitignore
+    gitignore = "#{ROOT}/.gitignore"
+    if File.exist?(gitignore)
+      unless already_updated_gitignore
+        log.green 'would you like to add configuration to .gitignore?'
+        answer = $stdin.gets.chomp
+        if answer == 'y'
+          open(gitignore, 'a') do |f|
+            f.puts 'auto_pilot_config.rb'
+          end
+          log.green 'updated .gitignore'
+        end
+      end
+    end
+  end
+
+  def already_updated_gitignore
+    File.read("#{ROOT}/.gitignore").match CONF_TEMPLATE
+  end
+
+  def download_answers_and_write_files
+    AutoPilot.write_files(AutoPilot.get_answers)
+  end
+
+  def log
+    AutoPilot::Log
+  end
+
+  def show_banner
+    puts <<-BLOCK.unindent
+    *********
+    AUTOPILOT
+    *********
+    BLOCK
+  end
+end
+
+Application.new
