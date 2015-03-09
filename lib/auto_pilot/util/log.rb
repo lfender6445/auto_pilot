@@ -4,6 +4,10 @@ module AutoPilot
     class << self
       attr_accessor :message
 
+      def out(text)
+        $stdout.write text
+      end
+
       def colorize(text, color_code)
         $stdout.write "\e[#{color_code}m#{text}\e[0m\n"
       end

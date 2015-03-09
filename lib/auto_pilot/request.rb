@@ -12,7 +12,7 @@ module AutoPilot
     end
 
     def self.error
-      Log.red 'Invalid url'
+      Log.red 'invalid url'
     end
 
     attr_reader :url, :options, :document, :error

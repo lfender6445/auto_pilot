@@ -34,11 +34,10 @@ class Application
 
   def ask_user_for_configuration
     if File.exist?("#{ROOT}/#{CONF_TEMPLATE}")
-      # ask_for_user
-      log.green "found existing configuration at #{ROOT}/#{CONF_TEMPLATE}"
+      log.out "found existing configuration at #{ROOT}/#{CONF_TEMPLATE}\n"
       load_configuration
     else
-      log.green 'do you want to create a configuration file? y/n'
+      log.out "do you want to create a configuration file? y/n\n"
       answer = $stdin.gets.chomp
       if answer == 'y'
         add_configuration_file
@@ -55,7 +54,7 @@ class Application
     log.yellow 'would you like to continue with configuration defaults? y/n'
     answer = $stdin.gets.chomp
     unless answer == 'y'
-      puts 'when ready, resume by running `autopilot`'
+      log.out 'when ready, resume by running `autopilot`'
       abort
     end
   end
@@ -90,7 +89,7 @@ class Application
   end
 
   def ask_for_user
-    log.green 'enter a stackoverflow username:'
+    log.out "enter a stackoverflow username:\n"
     answer = $stdin.gets.chomp
     if answer.nil? or answer == ''
       log.red '- invalid username, try again'
@@ -116,11 +115,11 @@ class Application
     gitignore = "#{ROOT}/.gitignore"
     if File.exist?(gitignore)
       unless already_updated_gitignore
-        log.green 'would you like to add configuration to .gitignore?'
+        log.green 'would you like to add configuration to .gitignore? y/n'
         answer = $stdin.gets.chomp
         if answer == 'y'
           open(gitignore, 'a') do |f|
-            f.puts 'auto_pilot_config.rb'
+            f.puts '/auto_pilot_config.rb'
           end
           log.green 'updated .gitignore'
         end
@@ -129,7 +128,7 @@ class Application
   end
 
   def already_updated_gitignore
-    File.read("#{ROOT}/.gitignore").match CONF_TEMPLATE
+    File.read("#{ROOT}/.gitignore").match(CONF_TEMPLATE)
   end
 
   def download_answers_and_write_files

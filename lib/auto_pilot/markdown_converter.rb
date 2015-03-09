@@ -31,6 +31,10 @@ module AutoPilot
       BLOCK
     end
 
+    def delimiter
+      '--------------------------------------- '
+    end
+
     # TODO: this should also be optional but default to true
     def front_matter
       <<-BLOCK.unindent
@@ -47,7 +51,10 @@ module AutoPilot
     def write_md_file(folder = AutoPilot.configuration.folder)
       system 'mkdir', '-p', (folder || DEFAULT_BLOG_FOLDER)
       new_file =  file_name(h1)
-      File.open("#{folder}/#{new_file}.md", 'w') { |file| file.write(md_template) }
+      File.open("#{folder}/#{new_file}.md", 'w') do |file|
+        file.write(md_template)
+        Log.green "- added file ./#{folder}/#{new_file}.md"
+      end
     end
   end
 end

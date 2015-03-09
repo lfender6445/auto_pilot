@@ -30,11 +30,8 @@ module AutoPilot
 
     def write_files(parsed_documents)
       parsed_documents.each do |doc|
-        if AutoPilot.configuration.format == :html
-          HtmlConverter.new doc
-        else
-          MarkdownConverter.new doc
-        end
+        HtmlConverter.new doc     if AutoPilot.configuration.format.include? :html
+        MarkdownConverter.new doc if AutoPilot.configuration.format.include? :md
       end
     end
   end

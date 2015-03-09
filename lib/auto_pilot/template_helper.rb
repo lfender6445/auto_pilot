@@ -6,9 +6,5 @@ module AutoPilot
       "#{prefix}-#{suffix}"
     end
 
-    def delimiter
-      '--------------------------------------- '
-    end
-
   end
 end

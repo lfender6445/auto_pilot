@@ -7,9 +7,9 @@ module AutoPilot
     DEFAULT_BLOG_FOLDER  =  './blog'
 
     def initialize(doc)
-      @h1       = to_markdown doc.title_html
-      @question = to_markdown doc.question_html
-      @answer   = to_markdown doc.answer_html
+      @h1       = doc.title_html
+      @question = doc.question_html
+      @answer   = doc.answer_html
       write_html_file
     end
 
@@ -17,6 +17,10 @@ module AutoPilot
 
     def to_html(html)
       html
+    end
+
+    def delimiter
+      '<hr />'
     end
 
     def html_template
@@ -32,7 +36,10 @@ module AutoPilot
     def write_html_file(folder = AutoPilot.configuration.folder)
       system 'mkdir', '-p', (folder || DEFAULT_BLOG_FOLDER)
       new_file =  file_name(h1)
-      File.open("#{folder}/#{new_file}.html", 'w') { |file| file.write(html_template) }
+      File.open("#{folder}/#{new_file}.html", 'w') do |file|
+        file.write(html_template)
+        Log.green "- added file ./#{folder}/#{new_file}.html"
+      end
     end
   end
 end

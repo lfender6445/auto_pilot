@@ -28,5 +28,5 @@ coverage
 *.swp
 *.dump
 /blog/
-auto_pilot_config.rb
 stackoverflow
+/auto_pilot_config.rb
