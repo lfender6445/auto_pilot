@@ -1,4 +1,5 @@
 require 'ruby-stackoverflow'
+require 'dotenv'
 
 require_relative 'core/string'
 require_relative 'auto_pilot/configure'
@@ -6,7 +7,6 @@ require_relative 'auto_pilot/api'
 require_relative 'auto_pilot/request'
 require_relative 'auto_pilot/document_parser'
 require_relative 'auto_pilot/markdown_converter'
-require_relative 'auto_pilot/template_helper'
 require_relative 'auto_pilot/html_converter'
 
 module AutoPilot
@@ -26,6 +26,7 @@ module AutoPilot
     end
 
     def get_api_answers
+      set_auth_data
       parsed_documents = []
       answers = AutoPilot::API.new.get_answers
       answers.each do |answer|
@@ -46,6 +47,12 @@ module AutoPilot
         HtmlConverter.new doc     if AutoPilot.configuration.format.include? :html
         MarkdownConverter.new doc if AutoPilot.configuration.format.include? :md
       end
+    end
+
+    def set_auth_data
+      Dotenv.load
+      AutoPilot.configuration.secret = ENV['SO_SECRET']
+      AutoPilot.configuration.key    = ENV['SO_KEY']
     end
   end
 end

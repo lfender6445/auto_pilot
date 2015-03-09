@@ -8,13 +8,14 @@ module AutoPilot
       @options = options
     end
 
-
     def get_answers
       answers = []
       pages = options[:pages] || Array(1..AutoPilot.configuration.max_pages)
       Log.green 'fetching user information from stackoverflow'
       pages.each do |page|
-        response = RubyStackoverflow.users_with_answers([user_id])
+        opts = api_options.merge(page: page)
+        binding.pry
+        response = RubyStackoverflow.users_with_answers([user_id], opts)
         answers << response.data.first.answers
         return unless response.has_more
       end
@@ -22,6 +23,17 @@ module AutoPilot
     end
 
     private
+
+    def api_options
+      hsh = {}
+      if key = AutoPilot.configuration.key
+        hsh[:key] = key
+      end
+      if secret = AutoPilot.configuration.secret
+        hsh[:secret] = secret
+      end
+      hsh
+    end
 
     def user_id
       if response.data.nil?
@@ -38,7 +50,7 @@ module AutoPilot
     end
 
     def filtered(answers)
-      if answers.length
+      if answers.length > 0
         filtered_answers = answers.flatten.uniq.select { |answer| answer.score > 0 }
         [].tap do |arr|
           filtered_answers.each do |answer|

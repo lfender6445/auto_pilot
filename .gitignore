@@ -30,3 +30,4 @@ coverage
 /blog/
 stackoverflow
 /auto_pilot_config.rb
+/.env.development

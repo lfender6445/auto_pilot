@@ -26,6 +26,7 @@ GEM
       safe_yaml (~> 1.0.0)
     debugger-linecache (1.2.0)
     docile (1.1.5)
+    dotenv (2.0.0)
     httparty (0.11.0)
       multi_json (~> 1.0)
       multi_xml (>= 0.5.2)
@@ -79,6 +80,7 @@ DEPENDENCIES
   auto_pilot!
   bundler (~> 1.7)
   codeclimate-test-reporter
+  dotenv (~> 2.0.0)
   minitest (~> 5.4.1)
   pry-byebug
   rake (~> 10.3.2)

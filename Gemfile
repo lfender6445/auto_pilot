@@ -16,3 +16,4 @@ group :development do
 end
 
 gem 'codeclimate-test-reporter', group: :test, require: nil
+gem 'dotenv', '~> 2.0.0'
