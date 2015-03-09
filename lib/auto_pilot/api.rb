@@ -10,11 +10,11 @@ module AutoPilot
 
     def get_answers
       answers = []
-      pages = options[:pages] || Array(1..AutoPilot.configuration.max_pages)
+      pages = options[:pages] || [1] || Array(1..AutoPilot.configuration.max_pages)
       Log.green 'fetching user information from stackoverflow'
       pages.each do |page|
         opts = api_options.merge(page: page)
-        binding.pry
+        throttle
         response = RubyStackoverflow.users_with_answers([user_id], opts)
         answers << response.data.first.answers
         return unless response.has_more
@@ -24,29 +24,37 @@ module AutoPilot
 
     private
 
+    # https://api.stackexchange.com/docs/throttle
+    # NOTE: While not strictly a throttle, the Stack Exchange API employs heavy caching and as such no application should make semantically identical requests more than once a minute.
+    def throttle
+      sleep(10)
+    end
+
     def api_options
       hsh = {}
       if key = AutoPilot.configuration.key
         hsh[:key] = key
       end
-      if secret = AutoPilot.configuration.secret
-        hsh[:secret] = secret
-      end
+      #if secret = AutoPilot.configuration.secret
+      #  hsh[:secret] = secret
+      #end
       hsh
     end
 
     def user_id
-      if response.data.nil?
-        if error = response.error
+      if user_response.data.nil?
+        if error = user_response.error
           fail "#{error.error_message} | #{error.error_name} | #{error.error_code}"
         end
       else
-        response.data.first.user_id
+        user_response.data.first.user_id
       end
     end
 
-    def response
-      RubyStackoverflow.users(inname: user)
+    def user_response
+      @response ||= RubyStackoverflow.users({inname: user}.merge(api_options))
+      throttle
+      @response
     end
 
     def filtered(answers)
@@ -58,7 +66,7 @@ module AutoPilot
           end
         end
       else
-        fail 'could not find answers for given user'
+        fail "could not find answers for #{AutoPilot.configuration.user}"
       end
     end
 
