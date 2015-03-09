@@ -44,9 +44,19 @@ class Application
         add_configuration_file
         load_configuration
         update_config_with_user
+        ask_user_to_keep_going
       else
         use_default_configuration
       end
+    end
+  end
+
+  def ask_user_to_keep_going
+    log.yellow 'would you like to continue with configuration defaults? y/n'
+    answer = $stdin.gets.chomp
+    unless answer == 'y'
+      puts 'when ready, resume by running `autopilot`'
+      abort
     end
   end
 
