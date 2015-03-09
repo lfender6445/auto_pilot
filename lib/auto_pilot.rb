@@ -2,6 +2,7 @@ require 'ruby-stackoverflow'
 
 require_relative 'core/string'
 require_relative 'auto_pilot/configure'
+require_relative 'auto_pilot/api'
 require_relative 'auto_pilot/request'
 require_relative 'auto_pilot/document_parser'
 require_relative 'auto_pilot/markdown_converter'
@@ -20,6 +21,18 @@ module AutoPilot
       question_ids.each do |id|
         doc = Request.fetch page_with_my_answer(id)
         parsed_documents << DocumentParser.new(doc, id, answer_ids.first)
+      end
+      parsed_documents
+    end
+
+    def get_api_answers
+      parsed_documents = []
+      answers = AutoPilot::API.new.get_answers
+      answers.each do |answer|
+        question_id = answer[:question_id]
+        answer_id   = answer[:answer_id]
+        doc = Request.fetch page_with_my_answer(question_id)
+        parsed_documents << DocumentParser.new(doc, question_id, answer_id)
       end
       parsed_documents
     end

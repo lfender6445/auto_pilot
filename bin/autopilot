@@ -85,7 +85,13 @@ class Application
       config.format = [:md]
       config.folder = "#{ROOT}/stackoverflow"
       config.disable_front_matter = false
+      config.max_pages = 50
+      config.date = { start: '2000-01-00', end: todays_date }
     end
+  end
+
+  def todays_date
+    Time.now.to_s.split(' ').first
   end
 
   def ask_for_user
@@ -107,7 +113,7 @@ class Application
   def add_configuration_file
     template = "#{ROOT}/lib/auto_pilot/templates/auto_pilot_config.rb"
     copy_with_path(template, CONF_TEMPLATE)
-    log.green "created ./#{CONF_TEMPLATE}"
+    log.green "- created ./#{CONF_TEMPLATE}"
     update_gitignore
   end
 
@@ -132,7 +138,8 @@ class Application
   end
 
   def download_answers_and_write_files
-    AutoPilot.write_files(AutoPilot.get_answers)
+    # AutoPilot.write_files(AutoPilot.get_answers)
+    AutoPilot.write_files(AutoPilot.get_api_answers)
   end
 
   def log
@@ -141,9 +148,9 @@ class Application
 
   def show_banner
     puts <<-BLOCK.unindent
-    *********
-    AUTOPILOT
-    *********
+    *************
+    -=AUTOPILOT=-
+    *************
     BLOCK
   end
 end

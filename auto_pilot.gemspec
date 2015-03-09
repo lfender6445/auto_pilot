@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = AutoPilot::VERSION
   spec.authors       = ['Luke Fender']
   spec.email         = ['lfender6445@gmail.com']
-  spec.summary       = 'Convert your stackoverflow to a github blog'
-  spec.description   = 'Convert your stackoverflow to a github blog'
+  spec.summary       = 'convert your stackoverflow to a github blog'
+  spec.description   = 'convert your stackoverflow to a github blog'
   spec.homepage      = ''
   spec.license       = 'MIT'
 
@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'nokogiri',  '~> 1.6.3.1'
   spec.add_dependency 'httparty',  '~> 0.11.0'
   spec.add_dependency 'reverse_markdown',  '~> 0.7.0'
-  spec.add_dependency 'ruby-stackoverflow', '~> 0.0.2'
+  spec.add_dependency 'ruby-stackoverflow', '~> 0.0.3'
 
   spec.add_development_dependency 'bundler', '~> 1.7'
   spec.add_development_dependency 'rake', '~> 10.3.2'

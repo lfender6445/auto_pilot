@@ -5,7 +5,7 @@ PATH
       httparty (~> 0.11.0)
       nokogiri (~> 1.6.3.1)
       reverse_markdown (~> 0.7.0)
-      ruby-stackoverflow (~> 0.0.2)
+      ruby-stackoverflow (~> 0.0.3)
 
 GEM
   remote: https://rubygems.org/
@@ -58,7 +58,7 @@ GEM
       rainbow (>= 1.99.1, < 3.0)
       ruby-progressbar (~> 1.4)
     ruby-progressbar (1.7.1)
-    ruby-stackoverflow (0.0.2)
+    ruby-stackoverflow (0.0.3)
       httparty (~> 0.11.0)
       json
     safe_yaml (1.0.4)

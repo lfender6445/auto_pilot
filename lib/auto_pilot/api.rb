@@ -1,46 +1,59 @@
 module AutoPilot
-  class Api
+  class API
     attr_reader :user, :options
 
-    def initialize(user, options = {})
+    def initialize(user = AutoPilot.configuration.user, options = {})
       fail 'must supply valid user' if user.nil?
       @user    = user
       @options = options
-
-      # TODO: move to configuration class
-      # date  = options[:date] || get_todays_date
-      pages = options[:page] || 1 || Array(1..3)
-      user_id = RubyStackoverflow.users(inname: user).data.first.user_id
-      answers = []
-      pages.each do |page|
-        response = RubyStackoverflow.users_with_answers([user_id], page: page)
-        answers << response.data.first.answers
-        # user has no more answers
-        return unless response.has_more
-      end
-      answers = filtered(answers)
-      question_ids = answers.map(&:question_id)
-      # TODO: pass something like the following to doc parser
-      # aq_obj = answers.map {|answer| {question: answer.question_id, id: answer.answer_id}}
     end
 
-    # NOTES
-    # not very useful. returns all answers for given question but NO content
-    # compose a URL to grab the question title and answer instead
-    # question_response = RubyStackoverflow.answers_of_questions(question_ids, {order: 'asc'})
 
-    # TODO: move to configurable option
-    def get_todays_date
-      Date.today.to_s
+    def get_answers
+      answers = []
+      pages = options[:pages] || Array(1..AutoPilot.configuration.max_pages)
+      Log.green 'fetching user information from stackoverflow'
+      pages.each do |page|
+        response = RubyStackoverflow.users_with_answers([user_id])
+        answers << response.data.first.answers
+        return unless response.has_more
+      end
+      filtered(answers)
+    end
+
+    private
+
+    def user_id
+      if response.data.nil?
+        if error = response.error
+          fail "#{error.error_message} | #{error.error_name} | #{error.error_code}"
+        end
+      else
+        response.data.first.user_id
+      end
+    end
+
+    def response
+      RubyStackoverflow.users(inname: user)
     end
 
     def filtered(answers)
       if answers.length
-        answers = answers.flatten.uniq
-        answers.select { |answer| answer.score > 0 }
+        filtered_answers = answers.flatten.uniq.select { |answer| answer.score > 0 }
+        [].tap do |arr|
+          filtered_answers.each do |answer|
+            arr << { answer_id: answer.answer_id, question_id: answer.question_id }
+          end
+        end
       else
         fail 'could not find answers for given user'
       end
     end
+
+    def fail(error)
+      Log.red error
+      abort
+    end
+
   end
 end
