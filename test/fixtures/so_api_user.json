@@ -1,0 +1,33 @@
+{
+  items: [
+    {
+      badge_counts: {
+        bronze: 21,
+        silver: 22,
+        gold: 0
+      },
+      account_id: 1529114,
+      is_employee: false,
+      last_modified_date: 1425342976,
+      last_access_date: 1425998136,
+      reputation_change_year: 565,
+      reputation_change_quarter: 565,
+      reputation_change_month: 105,
+      reputation_change_week: 50,
+      reputation_change_day: 10,
+      reputation: 2703,
+      creation_date: 1338402941,
+      user_type: "registered",
+      user_id: 1426788,
+      accept_rate: 67,
+      location: "Atlanta, GA",
+      website_url: "https://github.com/lfender6445",
+      link: "http://stackoverflow.com/users/1426788/lfender6445",
+      display_name: "lfender6445",
+      profile_image: "https://www.gravatar.com/avatar/8b836ad1cd8807ca747fe5c5cf6e1839?s=128&d=identicon&r=PG"
+    }
+  ],
+  has_more: false,
+  quota_max: 10000,
+  quota_remaining: 9960
+}

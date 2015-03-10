@@ -15,20 +15,16 @@ module AutoPilot
       Log.green "fetching information for #{AutoPilot.configuration.user} via stackoverflow api"
       pages.each do |page|
         response = answer_response(page)
+        binding.pry
         answers << response.data.first.answers
         break unless response.has_more
       end
       filtered(answers)
     end
 
-    private
 
     def pages
       Array(1..(AutoPilot.configuration.max_pages || 3))
-    end
-
-    def answer_response(page)
-      throttle { RubyStackoverflow.users_with_answers([user_id], 'page' => page) }
     end
 
     # https://api.stackexchange.com/docs/throttle
@@ -37,6 +33,13 @@ module AutoPilot
       sleep(AutoPilot.configuration.throttle || 3)
       yield if block_given?
     end
+
+    private
+
+    def answer_response(page)
+      throttle { RubyStackoverflow.users_with_answers([user_id], 'page' => page) }
+    end
+
 
     def add_config_client_key
       if key = AutoPilot.configuration.key
