@@ -4,7 +4,7 @@ require_relative 'template_helper'
 module AutoPilot
   class MarkdownConverter
     include AutoPilot::TemplateHelper
-    attr_reader :doc, :h1, :question, :answer
+    attr_reader :doc, :h1_tag, :question, :answer
 
     DEFAULT_BLOG_FOLDER  =  './stackoverflow'
 

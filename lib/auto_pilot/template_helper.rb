@@ -22,7 +22,7 @@ module AutoPilot
     end
 
     def make_folder_if_doesnt_exist
-      system 'mkdir', '-p', AutoPilot.confiugration.folder
+      system 'mkdir', '-p', AutoPilot.configuration.folder
     end
 
     def write_file_to_disk(folder = AutoPilot.configuration.folder, type)

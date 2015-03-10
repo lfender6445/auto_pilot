@@ -35,14 +35,14 @@ module AutoPilot
     # NOTE: While not strictly a throttle, the Stack Exchange API employs heavy caching and as such no application should make semantically identical requests more than once a minute.
     def throttle
       sleep(AutoPilot.configuration.throttle || 3)
-      yield
+      yield if block_given?
     end
 
     def add_config_client_key
       if key = AutoPilot.configuration.key
         RubyStackoverflow.configure { |config| config.client_key = key }
       else
-        Log.yellow 'remember, by signing up for anapi key you can execute more requests - http://api.stackexchange.com/'
+        Log.yellow 'by signing up for an api key you can execute more requests - http://api.stackexchange.com/'
       end
     end
 

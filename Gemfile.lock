@@ -142,4 +142,5 @@ DEPENDENCIES
   rubocop
   ruby-stackoverflow!
   rubycritic
+  simplecov
   webmock (~> 1.18.0)

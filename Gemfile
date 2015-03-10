@@ -12,6 +12,7 @@ group :development do
     gem 'pry-debugger'
   end
   gem 'rubycritic'
+  gem 'simplecov'
 end
 
 gem 'ruby-stackoverflow', path: '../ruby-stackoverflow'
