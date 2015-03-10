@@ -14,10 +14,10 @@ module AutoPilot
 
     def initialize(data = {})
       @data = {}
-      update!(data)
+      update(data)
     end
 
-    def update!(data)
+    def update(data)
       data.each do |key, value|
         self[key.to_sym] = value
       end

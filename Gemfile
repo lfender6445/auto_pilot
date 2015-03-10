@@ -11,6 +11,7 @@ group :development do
   else
     gem 'pry-debugger'
   end
+  gem 'rubycritic'
 end
 
 gem 'ruby-stackoverflow', path: '../ruby-stackoverflow'

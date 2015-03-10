@@ -9,10 +9,11 @@ module AutoPilot
     DEFAULT_BLOG_FOLDER  =  './stackoverflow'
 
     def initialize(doc)
-      @h1       = to_markdown doc.title_html
+      @h1_tag   = to_markdown doc.title_html
       @question = to_markdown doc.question_html
       @answer   = to_markdown doc.answer_html
-      write_md_file
+      make_folder_if_doesnt_exist
+      write_file_to_disk(AutoPilot.configuration.folder, :md)
     end
 
     private
@@ -24,7 +25,7 @@ module AutoPilot
     def md_template
       @markdown ||= <<-BLOCK.unindent
       #{front_matter unless AutoPilot.configuration.disable_front_matter}
-      #{h1}
+      #{h1_tag}
       #{question}
       #{delimiter}
       #{answer}
@@ -39,22 +40,12 @@ module AutoPilot
       <<-BLOCK.unindent
       ---
       layout: post
-      title: "#{h1.strip}"
+      title: "#{h1_tag.strip}"
       description: ""
       category:
       tags: []
       ---
       BLOCK
-    end
-
-    def write_md_file(folder = AutoPilot.configuration.folder)
-      system 'mkdir', '-p', (folder || DEFAULT_BLOG_FOLDER)
-      new_file =  file_name(h1)
-      sanitized_file_name = parameterize(new_file)
-      File.open("#{folder}/#{sanitized_file_name}.md", 'w') do |file|
-        file.write(md_template)
-        Log.green "- added file ./#{folder}/#{sanitized_file_name}.md"
-      end
     end
   end
 end

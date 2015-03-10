@@ -25,10 +25,10 @@ module AutoPilot
     def get_document(url)
       response = self.class.get(url, options)
       throttle
-      log_request(url, response)
+      log_response(url, response)
       response
-    rescue => e
-      Log.red "request failed for #{url} #{e}"
+    rescue => error
+      Log.red "request failed for #{url} #{error}"
       false
     end
 
@@ -38,10 +38,11 @@ module AutoPilot
       sleep(AutoPilot.configuration.throttle || 3)
     end
 
-    def log_request(url, response)
-      if response.code != 200
-        @error = response.code
-        Log.red "request failure trying to download #{url}, status #{response.code}"
+    def log_response(url, response)
+      code = response.code
+      if code != 200
+        @error = code
+        Log.red "request failure trying to download #{url}, status #{code}"
       else
         Log.green "- downloading #{url}"
       end

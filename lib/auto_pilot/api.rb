@@ -1,38 +1,44 @@
 require 'ruby-stackoverflow'
 module AutoPilot
   class API
-    attr_reader :user, :options
+    attr_reader :user, :options, :answers
 
     def initialize(user = AutoPilot.configuration.user, options = {})
-      fail 'must supply valid user' if user.nil?
       @user    = user
       @options = options
-      set_api_config
+      @answers = []
+      add_config_client_key
     end
 
     def get_answers
-      answers = []
       # TODO: supply range in config
-      pages = options[:pages] || Array(1..AutoPilot.configuration.max_pages)
       Log.green "fetching information for #{AutoPilot.configuration.user} via stackoverflow api"
       pages.each do |page|
-        throttle
-        response = RubyStackoverflow.users_with_answers([user_id], 'page' => page)
+        response = answer_response(page)
         answers << response.data.first.answers
-        return unless response.has_more
+        break unless response.has_more
       end
       filtered(answers)
     end
 
     private
 
+    def pages
+      Array(1..(AutoPilot.configuration.max_pages || 3))
+    end
+
+    def answer_response(page)
+      throttle { RubyStackoverflow.users_with_answers([user_id], 'page' => page) }
+    end
+
     # https://api.stackexchange.com/docs/throttle
     # NOTE: While not strictly a throttle, the Stack Exchange API employs heavy caching and as such no application should make semantically identical requests more than once a minute.
     def throttle
       sleep(AutoPilot.configuration.throttle || 3)
+      yield
     end
 
-    def set_api_config
+    def add_config_client_key
       if key = AutoPilot.configuration.key
         RubyStackoverflow.configure { |config| config.client_key = key }
       else
@@ -42,12 +48,12 @@ module AutoPilot
 
     def user_id
       throttle
-      if user_response.data.nil?
+      if user_response.data
+        user_response.data.first.user_id
+      else
         if error = user_response.error
           fail "#{error.error_message} | #{error.error_name} | #{error.error_code}"
         end
-      else
-        user_response.data.first.user_id
       end
     end
 
