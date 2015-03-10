@@ -1,4 +1,3 @@
-require 'ruby-stackoverflow'
 require 'dotenv'
 
 require_relative 'core/string'
@@ -32,7 +31,9 @@ module AutoPilot
       answers.each do |answer|
         question_id = answer[:question_id]
         answer_id   = answer[:answer_id]
-        doc = Request.fetch page_with_my_answer(question_id)
+        url = page_with_my_answer(question_id)
+        doc = Request.fetch url
+        Log.green "question id #{question_id} | answer id #{answer_id}"
         parsed_documents << DocumentParser.new(doc, question_id, answer_id)
       end
       parsed_documents

@@ -1,3 +1,4 @@
+require 'ruby-stackoverflow'
 module AutoPilot
   class API
     attr_reader :user, :options
@@ -6,6 +7,7 @@ module AutoPilot
       fail 'must supply valid user' if user.nil?
       @user    = user
       @options = options
+      set_api_config
     end
 
     def get_answers
@@ -13,9 +15,8 @@ module AutoPilot
       pages = options[:pages] || [1] || Array(1..AutoPilot.configuration.max_pages)
       Log.green 'fetching user information from stackoverflow'
       pages.each do |page|
-        opts = api_options.merge(page: page)
         throttle
-        response = RubyStackoverflow.users_with_answers([user_id], opts)
+        response = RubyStackoverflow.users_with_answers([user_id], 'page' => page )
         answers << response.data.first.answers
         return unless response.has_more
       end
@@ -27,21 +28,17 @@ module AutoPilot
     # https://api.stackexchange.com/docs/throttle
     # NOTE: While not strictly a throttle, the Stack Exchange API employs heavy caching and as such no application should make semantically identical requests more than once a minute.
     def throttle
-      sleep(10)
+      sleep(5)
     end
 
-    def api_options
-      hsh = {}
+    def set_api_config
       if key = AutoPilot.configuration.key
-        hsh[:key] = key
+    RubyStackoverflow.configure { |config| config.client_key = key }
       end
-      #if secret = AutoPilot.configuration.secret
-      #  hsh[:secret] = secret
-      #end
-      hsh
     end
 
     def user_id
+      throttle
       if user_response.data.nil?
         if error = user_response.error
           fail "#{error.error_message} | #{error.error_name} | #{error.error_code}"
@@ -52,9 +49,7 @@ module AutoPilot
     end
 
     def user_response
-      @response ||= RubyStackoverflow.users({inname: user}.merge(api_options))
-      throttle
-      @response
+      @response ||= RubyStackoverflow.users({inname: user})
     end
 
     def filtered(answers)

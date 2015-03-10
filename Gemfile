@@ -1,7 +1,6 @@
-# ruby '1.9.3'
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in theme_bandit.gemspec
+gemspec
 
 r_version = RUBY_VERSION.to_f
 
@@ -14,7 +13,6 @@ group :development do
   end
 end
 
-gemspec
 gem 'ruby-stackoverflow', path: '/Users/lfender/source/ruby-stackoverflow'
 gem 'codeclimate-test-reporter', group: :test, require: nil
 gem 'dotenv', '~> 2.0.0'

@@ -24,6 +24,7 @@ module AutoPilot
 
     def get_document(url)
       response = self.class.get(url, options)
+      throttle
       log_request(url, response)
       response
     rescue => e
@@ -32,6 +33,10 @@ module AutoPilot
     end
 
     private
+
+    def throttle
+      sleep(3)
+    end
 
     def log_request(url, response)
       if response.code != 200

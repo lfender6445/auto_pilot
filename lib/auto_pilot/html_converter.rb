@@ -32,13 +32,20 @@ module AutoPilot
       EOS
     end
 
+    # TODO: strip special chars
+    # TODO: [duplicate] remove stuff like duplicate
     # TODO: base this on initial options
     def write_html_file(folder = AutoPilot.configuration.folder)
       system 'mkdir', '-p', (folder || DEFAULT_BLOG_FOLDER)
       new_file =  file_name(h1)
-      File.open("#{folder}/#{new_file}.html", 'w') do |file|
-        file.write(html_template)
-        Log.green "- added file ./#{folder}/#{new_file}.html"
+      if new_file
+        sanitized_file_name = sanitize_file_name(new_file)
+        File.open("#{folder}/#{sanitized_file_name}.html", 'w') do |file|
+          file.write(html_template)
+          Log.green "- added file ./#{folder}/#{sanitized_file_name}.html"
+        end
+      else
+        Log.red "could not create file"
       end
     end
   end

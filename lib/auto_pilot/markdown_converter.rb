@@ -51,9 +51,10 @@ module AutoPilot
     def write_md_file(folder = AutoPilot.configuration.folder)
       system 'mkdir', '-p', (folder || DEFAULT_BLOG_FOLDER)
       new_file =  file_name(h1)
-      File.open("#{folder}/#{new_file}.md", 'w') do |file|
+      sanitized_file_name = sanitize_file_name(new_file)
+      File.open("#{folder}/#{sanitized_file_name}.md", 'w') do |file|
         file.write(md_template)
-        Log.green "- added file ./#{folder}/#{new_file}.md"
+        Log.green "- added file ./#{folder}/#{sanitized_file_name}.md"
       end
     end
   end
