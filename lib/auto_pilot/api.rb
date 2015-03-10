@@ -16,7 +16,7 @@ module AutoPilot
       Log.green 'fetching user information from stackoverflow'
       pages.each do |page|
         throttle
-        response = RubyStackoverflow.users_with_answers([user_id], 'page' => page )
+        response = RubyStackoverflow.users_with_answers([user_id], 'page' => page)
         answers << response.data.first.answers
         return unless response.has_more
       end
@@ -33,7 +33,7 @@ module AutoPilot
 
     def set_api_config
       if key = AutoPilot.configuration.key
-    RubyStackoverflow.configure { |config| config.client_key = key }
+        RubyStackoverflow.configure { |config| config.client_key = key }
       end
     end
 
@@ -49,7 +49,7 @@ module AutoPilot
     end
 
     def user_response
-      @response ||= RubyStackoverflow.users({inname: user})
+      @response ||= RubyStackoverflow.users(inname: user)
     end
 
     def filtered(answers)
@@ -69,6 +69,5 @@ module AutoPilot
       Log.red error
       abort
     end
-
   end
 end

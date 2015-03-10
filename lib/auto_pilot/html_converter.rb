@@ -45,7 +45,7 @@ module AutoPilot
           Log.green "- added file ./#{folder}/#{sanitized_file_name}.html"
         end
       else
-        Log.red "could not create file"
+        Log.red 'could not create file'
       end
     end
   end
