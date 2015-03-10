@@ -12,8 +12,9 @@ module AutoPilot
 
     def get_answers
       answers = []
-      pages = options[:pages] || [1] || Array(1..AutoPilot.configuration.max_pages)
-      Log.green 'fetching user information from stackoverflow'
+      # TODO: supply range in config
+      pages = options[:pages] || Array(1..AutoPilot.configuration.max_pages)
+      Log.green "fetching information for #{AutoPilot.configuration.user} via stackoverflow api"
       pages.each do |page|
         throttle
         response = RubyStackoverflow.users_with_answers([user_id], 'page' => page)
@@ -28,12 +29,14 @@ module AutoPilot
     # https://api.stackexchange.com/docs/throttle
     # NOTE: While not strictly a throttle, the Stack Exchange API employs heavy caching and as such no application should make semantically identical requests more than once a minute.
     def throttle
-      sleep(5)
+      sleep(AutoPilot.configuration.throttle || 3)
     end
 
     def set_api_config
       if key = AutoPilot.configuration.key
         RubyStackoverflow.configure { |config| config.client_key = key }
+      else
+        Log.yellow 'remember, by signing up for anapi key you can execute more requests - http://api.stackexchange.com/'
       end
     end
 

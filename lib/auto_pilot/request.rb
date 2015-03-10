@@ -35,7 +35,7 @@ module AutoPilot
     private
 
     def throttle
-      sleep(3)
+      sleep(AutoPilot.configuration.throttle || 3)
     end
 
     def log_request(url, response)

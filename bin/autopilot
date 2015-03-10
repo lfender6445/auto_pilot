@@ -75,7 +75,6 @@ class Application
 
   def load_configuration
     load "#{ROOT}/#{CONF_TEMPLATE}"
-    log.green 'loaded configuration'
   end
   alias_method :reload_config, :load_configuration
 
@@ -85,7 +84,7 @@ class Application
       config.format = [:md]
       config.folder = "#{ROOT}/stackoverflow"
       config.disable_front_matter = false
-      config.max_pages = 50
+      config.max_pages = 1
       config.date = { start: '2000-01-00', end: todays_date }
     end
   end

@@ -35,7 +35,6 @@ module AutoPilot
       '--------------------------------------- '
     end
 
-    # TODO: this should also be optional but default to true
     def front_matter
       <<-BLOCK.unindent
       ---
@@ -51,7 +50,7 @@ module AutoPilot
     def write_md_file(folder = AutoPilot.configuration.folder)
       system 'mkdir', '-p', (folder || DEFAULT_BLOG_FOLDER)
       new_file =  file_name(h1)
-      sanitized_file_name = sanitize_file_name(new_file)
+      sanitized_file_name = parameterize(new_file)
       File.open("#{folder}/#{sanitized_file_name}.md", 'w') do |file|
         file.write(md_template)
         Log.green "- added file ./#{folder}/#{sanitized_file_name}.md"

@@ -1,5 +1,3 @@
-require 'dotenv'
-
 require_relative 'core/string'
 require_relative 'auto_pilot/configure'
 require_relative 'auto_pilot/api'
@@ -25,7 +23,6 @@ module AutoPilot
     end
 
     def get_api_answers
-      set_auth_data
       parsed_documents = []
       answers = AutoPilot::API.new.get_answers
       answers.each do |answer|
@@ -33,7 +30,7 @@ module AutoPilot
         answer_id   = answer[:answer_id]
         url = page_with_my_answer(question_id)
         doc = Request.fetch url
-        Log.green "question id #{question_id} | answer id #{answer_id}"
+        # Log.green "question id #{question_id} | answer id #{answer_id}"
         parsed_documents << DocumentParser.new(doc, question_id, answer_id)
       end
       parsed_documents
@@ -48,12 +45,6 @@ module AutoPilot
         HtmlConverter.new doc     if AutoPilot.configuration.format.include? :html
         MarkdownConverter.new doc if AutoPilot.configuration.format.include? :md
       end
-    end
-
-    def set_auth_data
-      Dotenv.load
-      AutoPilot.configuration.secret = ENV['SO_SECRET']
-      AutoPilot.configuration.key    = ENV['SO_KEY']
     end
   end
 end

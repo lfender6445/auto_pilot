@@ -39,7 +39,7 @@ module AutoPilot
       system 'mkdir', '-p', (folder || DEFAULT_BLOG_FOLDER)
       new_file =  file_name(h1)
       if new_file
-        sanitized_file_name = sanitize_file_name(new_file)
+        sanitized_file_name = parameterize(new_file)
         File.open("#{folder}/#{sanitized_file_name}.html", 'w') do |file|
           file.write(html_template)
           Log.green "- added file ./#{folder}/#{sanitized_file_name}.html"

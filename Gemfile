@@ -13,6 +13,5 @@ group :development do
   end
 end
 
-gem 'ruby-stackoverflow', path: '/Users/lfender/source/ruby-stackoverflow'
+gem 'ruby-stackoverflow', path: '../ruby-stackoverflow'
 gem 'codeclimate-test-reporter', group: :test, require: nil
-gem 'dotenv', '~> 2.0.0'

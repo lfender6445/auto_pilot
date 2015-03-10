@@ -26,6 +26,7 @@ module AutoPilot
       def green(text)
         @message = text
         colorize(text, 32)
+        logger.info text
       end
 
       private
