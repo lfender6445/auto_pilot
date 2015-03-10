@@ -10,7 +10,7 @@ module AutoPilot
       @h1_tag       = doc.title_html
       @question = doc.question_html
       @answer   = doc.answer_html
-      write_folder_if_doesnt_exist
+      make_folder_if_doesnt_exist
       write_file_to_disk(AutoPilot.configuration.folder, :html)
     end
 
