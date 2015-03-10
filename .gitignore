@@ -29,5 +29,6 @@ coverage
 *.dump
 /blog/
 stackoverflow
+test/stackoverflow
 /auto_pilot_config.rb
 /.env
