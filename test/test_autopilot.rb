@@ -25,9 +25,8 @@ class TestAutoPilot < MiniTest::Test
     end
     def setup
       configure
-      stub_request(:get, /api.stackexchange.com/i).to_return(status: 200, body: {}.to_s, headers: {})
-      stub_request(:get, 'http://stackoverflow.com/questions/123/')
-        .to_return(status: 200, body: '', headers: {})
+      stub_request(:any, /api.stackexchange.com/i).to_return(status: 200, body: {}.to_s, headers: {})
+      stub_request(:any, 'http://stackoverflow.com/questions/123/').to_return(status: 200, body: '', headers: {})
     end
     it 'returns parsed documents' do
       @subject = AutoPilot
