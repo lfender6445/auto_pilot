@@ -24,4 +24,3 @@ class TestConfigure < MiniTest::Test
     # assert_equal @subject.update({ foo: 'baz'}), []
   end
 end
-

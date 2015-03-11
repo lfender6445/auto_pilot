@@ -13,8 +13,7 @@ class TestAutoPilot < MiniTest::Test
   def test_write_files
     parsed_docs = load_fixture_and_parse
     @subject.write_files(parsed_docs)
-    assert(File.exists? './test/stackoverflow/2015-03-10-refactoring-an-each-loop.md')
-    assert(File.exists? './test/stackoverflow/2015-03-10-refactoring-an-each-loop.html')
+    assert(File.exist? './test/stackoverflow/2015-03-10-refactoring-an-each-loop.md')
+    assert(File.exist? './test/stackoverflow/2015-03-10-refactoring-an-each-loop.html')
   end
 end
-

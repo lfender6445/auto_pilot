@@ -22,7 +22,6 @@ module AutoPilot
       filtered(answers)
     end
 
-
     def pages
       Array(1..(AutoPilot.configuration.max_pages || 3))
     end
@@ -39,7 +38,6 @@ module AutoPilot
     def answer_response(page)
       throttle { RubyStackoverflow.users_with_answers([user_id], 'page' => page) }
     end
-
 
     def add_config_client_key
       if key = AutoPilot.configuration.key

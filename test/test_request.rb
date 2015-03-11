@@ -5,8 +5,8 @@ class TestRequest < MiniTest::Test
     describe 'success' do
       before do
         configure
-        stub_request(:get, "http://www.example.com/").
-          to_return(:status => 200, :body => load_html_fixture, :headers => {})
+        stub_request(:get, 'http://www.example.com/')
+          .to_return(status: 200, body: load_html_fixture, headers: {})
         @subject = AutoPilot::Request
       end
 
@@ -19,8 +19,8 @@ class TestRequest < MiniTest::Test
     describe 'invalid' do
       before do
         configure
-        stub_request(:get, "http://www.example.com/").
-          to_return(:status => 404, :body => load_html_fixture, :headers => {})
+        stub_request(:get, 'http://www.example.com/')
+          .to_return(status: 404, body: load_html_fixture, headers: {})
         @subject = AutoPilot::Request
       end
 

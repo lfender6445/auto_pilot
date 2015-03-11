@@ -20,7 +20,7 @@ def configure
   AutoPilot.configure do |config|
     config.user   = 'foo'
     config.format = [:md, :html]
-    config.folder = "test/stackoverflow"
+    config.folder = 'test/stackoverflow'
     config.disable_front_matter = false
     config.max_pages = 3
     config.key = nil
@@ -30,10 +30,9 @@ end
 
 def load_fixture_and_parse
   `rm -rf test/stackoverflow`
-  question_id = 28956301
-  answer_id   = 28956353
+  question_id = 28_956_301
+  answer_id   = 28_956_353
   doc         = load_html_fixture
   parsed_doc  = AutoPilot::DocumentParser.new(doc, question_id, answer_id)
   [parsed_doc]
 end
-
