@@ -10,17 +10,17 @@ module AutoPilot
   class << self
     BASE_URL = 'http://stackoverflow.com/questions'
 
-    def get_answers(_user = '', _options = {})
-      # TODO: id stubs, replace with API
-      question_ids = [19_348_076]
-      answer_ids   = [25_536_701]
-      parsed_documents = []
-      question_ids.each do |id|
-        doc = Request.fetch page_with_my_answer(id)
-        parsed_documents << DocumentParser.new(doc, id, answer_ids.first)
-      end
-      parsed_documents
-    end
+    # def get_answers(_user = '', _options = {})
+    #   # TODO: id stubs, replace with API
+    #   question_ids = [19_348_076]
+    #   answer_ids   = [25_536_701]
+    #   parsed_documents = []
+    #   question_ids.each do |id|
+    #     doc = Request.fetch page_with_my_answer(id)
+    #     parsed_documents << DocumentParser.new(doc, id, answer_ids.first)
+    #   end
+    #   parsed_documents
+    # end
 
     def get_api_answers
       parsed_documents = []

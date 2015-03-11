@@ -31,13 +31,13 @@ module AutoPilot
       @data[key.to_sym] = value
     end
 
-    def keys
-      @data.keys
-    end
+    # def keys
+    #   @data.keys
+    # end
 
-    def to_hash
-      @data
-    end
+    # def to_hash
+    #   @data
+    # end
 
     def method_missing(sym, *args)
       if sym.to_s =~ /(.+)=$/

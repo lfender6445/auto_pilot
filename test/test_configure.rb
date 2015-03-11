@@ -16,9 +16,12 @@ class TestConfigure < MiniTest::Test
     assert_equal @subject.configuration.format, [:md, :html]
     assert_equal @subject.configuration.folder, 'test/stackoverflow'
     assert_equal @subject.configuration.disable_front_matter, false
-    assert_equal @subject.configuration.max_pages, 2
+    assert_equal @subject.configuration.max_pages, 3
     assert_equal @subject.configuration.key, nil
     assert_equal @subject.configuration.throttle, 3
+    # assert_equal @subject.keys, []
+    # assert_equal @subject.to_hash, []
+    # assert_equal @subject.update({ foo: 'baz'}), []
   end
 end
 

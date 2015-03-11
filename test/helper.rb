@@ -22,7 +22,7 @@ def configure
     config.format = [:md, :html]
     config.folder = "test/stackoverflow"
     config.disable_front_matter = false
-    config.max_pages = 2
+    config.max_pages = 3
     config.key = nil
     config.throttle = 3
   end
