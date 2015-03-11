@@ -14,7 +14,6 @@ require_relative 'support/common'
 # require 'codeclimate-test-reporter'
 # CodeClimate::TestReporter.start
 
-MiniTest.autorun
 
 def configure
   AutoPilot.configure do |config|
@@ -36,3 +35,17 @@ def load_fixture_and_parse
   parsed_doc  = AutoPilot::DocumentParser.new(doc, question_id, answer_id)
   [parsed_doc]
 end
+
+# squelch log output for tests unless debug set
+unless ENV['DEBUG']
+  module AutoPilot
+    class Log
+      class << self
+        def colorize(*args); end
+        def out(*args); end
+      end
+    end
+  end
+end
+
+MiniTest.autorun
