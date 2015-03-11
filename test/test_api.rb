@@ -1,4 +1,5 @@
-require 'helper'
+require_relative 'helper'
+require 'webmock/minitest'
 class TestAPI < MiniTest::Test
   describe 'api' do
     def setup
@@ -26,11 +27,7 @@ class TestAPI < MiniTest::Test
     it '#get_answers' do
       class RubyStackoverflow
         def self.users_with_answers(page = 1, opts)
-          OpenStruct.new(
-            {
-              data: [ OpenStruct.new({answers: [] })]
-            }
-          )
+          OpenStruct.new( { data: [ OpenStruct.new({answers: [] })] })
         end
       end
       assert_equal @subject.get_answers, [{:answer_id=>123, :question_id=>123}]
