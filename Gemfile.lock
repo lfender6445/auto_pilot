@@ -26,8 +26,6 @@ GEM
       columnize (~> 0.8)
       debugger-linecache (~> 1.2)
       slop (~> 3.6)
-    codeclimate-test-reporter (0.4.7)
-      simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.0)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
@@ -132,7 +130,6 @@ PLATFORMS
 DEPENDENCIES
   auto_pilot!
   bundler (~> 1.7)
-  codeclimate-test-reporter
   minitest (~> 5.4.1)
   pry-byebug
   rake (~> 10.3.2)

@@ -1,4 +1,6 @@
 require 'logger'
+system 'mkdir', '-p', 'log'
+
 module AutoPilot
   class Log < Logger
     class << self

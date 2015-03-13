@@ -27,8 +27,9 @@ mkmf.log
 coverage
 *.swp
 *.dump
+
 /blog/
-stackoverflow
+/stackoverflow/
 test/stackoverflow
 /auto_pilot_config.rb
 /.env
