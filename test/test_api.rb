@@ -24,7 +24,6 @@ class TestAPI < MiniTest::Test
     it '#pages' do
       assert_equal @subject.pages, [1,2,3]
     end
-
     it '#get_answers' do
       assert_equal @subject.get_answers, [{:answer_id=>123, :question_id=>123}]
     end

@@ -40,11 +40,9 @@ module AutoPilot
   class API
     def answer_double
       OpenStruct.new({
-        answer: OpenStruct.new({
-          score: 1,
-          answer_id: 123,
-          question_id: 123
-        })
+        score: 1,
+        answer_id: 123,
+        question_id: 123
       })
     end
 
