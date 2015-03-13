@@ -15,5 +15,4 @@ group :development do
   gem 'simplecov'
 end
 
-gem 'ruby-stackoverflow', path: '../ruby-stackoverflow'
 gem 'codeclimate-test-reporter', group: :test, require: nil
