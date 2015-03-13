@@ -42,6 +42,7 @@ TODO: Write usage instructions here
 create config file and object
 support date range restriction
 support html conversion
+enable switching placemnet of answers and questions
 
 # api
 api.stackexchange.com/2.1
