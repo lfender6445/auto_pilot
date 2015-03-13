@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    auto_pilot (0.0.1)
+    auto_pilot (0.1.0)
       httparty (~> 0.11.0)
       nokogiri (~> 1.6.3.1)
       reverse_markdown (~> 0.7.0)
