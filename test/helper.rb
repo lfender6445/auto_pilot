@@ -34,6 +34,31 @@ module AutoPilot
     end
   end
 end
+
+# NOTE: stub out answer collection for api tests
+module AutoPilot
+  class API
+    def answer_double
+      OpenStruct.new({
+        answer: OpenStruct.new({
+          score: 1,
+          answer_id: 123,
+          question_id: 123
+        })
+      })
+    end
+
+    def answer_response(*args)
+      # [{:answer_id=>123, :question_id=>123}]
+      OpenStruct.new( {
+        data: [ OpenStruct.new({
+          answers: [answer_double]
+         })]
+      })
+    end
+  end
+end
+
 require_relative 'support/common'
 
 MiniTest.autorun

@@ -11,11 +11,9 @@ module AutoPilot
     end
 
     def get_answers
-      # TODO: supply range in config
       Log.green "fetching information for #{AutoPilot.configuration.user} via stackoverflow api"
       pages.each do |page|
         response = answer_response(page)
-        binding.pry
         answers << response.data.first.answers
         break unless response.has_more
       end

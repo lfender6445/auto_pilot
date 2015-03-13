@@ -24,12 +24,8 @@ class TestAPI < MiniTest::Test
     it '#pages' do
       assert_equal @subject.pages, [1,2,3]
     end
+
     it '#get_answers' do
-      class RubyStackoverflow
-        def self.users_with_answers(page = 1, opts)
-          OpenStruct.new( { data: [ OpenStruct.new({answers: [] })] })
-        end
-      end
       assert_equal @subject.get_answers, [{:answer_id=>123, :question_id=>123}]
     end
   end
