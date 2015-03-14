@@ -72,6 +72,7 @@ GEM
     pry-byebug (3.0.1)
       byebug (~> 3.4)
       pry (~> 0.10)
+    rack (1.6.0)
     rainbow (2.0.0)
     rake (10.3.2)
     reek (1.6.5)
@@ -132,6 +133,7 @@ DEPENDENCIES
   bundler (~> 1.7)
   minitest (~> 5.4.1)
   pry-byebug
+  rack
   rake (~> 10.3.2)
   rubocop
   rubycritic

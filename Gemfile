@@ -13,6 +13,7 @@ group :development do
   end
   gem 'rubycritic'
   gem 'simplecov'
+  gem 'rack'
 end
 
 # gem 'codeclimate-test-reporter', group: :test, require: nil

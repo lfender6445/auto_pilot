@@ -4,6 +4,8 @@ AutoPilot.configure do |config|
   config.key = nil
   # string - a stackoverflow username
   config.user = 'username'
+  # integer - score must be greater than threshold in order to qualify for download
+  config.score_threshold = -1
   # string - where to put markdown and html files
   config.folder = 'stackoverflow'
   # array - convert to [:md], [:html], or both eg [:md, :html]

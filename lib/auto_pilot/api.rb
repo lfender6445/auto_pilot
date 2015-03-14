@@ -62,7 +62,7 @@ module AutoPilot
 
     def filtered(answers)
       if answers.length > 0
-        filtered_answers = answers.flatten.uniq.select { |answer| answer.score > 0 }
+        filtered_answers = answers.flatten.uniq.select { |answer| answer.score > (AutoPilot.configuration.score_threshold || 0) }
         [].tap do |arr|
           filtered_answers.each do |answer|
             arr << { answer_id: answer.answer_id, question_id: answer.question_id }
