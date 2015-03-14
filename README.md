@@ -7,45 +7,24 @@
 
 use this ruby gem to convert your [stackoverflow](http://www.stackoverflow.com/) profile to a [jekyll blog](https://help.github.com/articles/using-jekyll-with-pages/)
 
+in its current form, autopilot will fetch questions you've answered (with a score greater than 0) and convert them to markdown or html
 
-# usage
-supports conversion to html or [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+# install + usage
 
-## Installation
+- add `gem 'auto_pilot', '~> 0.2.0'` to gemfile
+- install via `bundle`
+- run `autopilot` from command line
 
-Add this line to your application's Gemfile:
+from there, you can configure and tweak how autopilot performs
 
-```ruby
-gem 'auto_pilot'
-```
+## configuration
 
-And then execute:
+more information on possible [configuration options here](https://github.com/lfender6445/auto_pilot/blob/master/lib/auto_pilot/templates/auto_pilot_config.rb)
 
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install auto_pilot
-
-## Usage
-
-TODO: Write usage instructions here
+- it is recommended you [sign up for an API key](http://api.stackexchange.com) prior to using autopilot.
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/auto_pilot/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
-
-## todo
-
-create config file and object
-support date range restriction
-support html conversion
-enable switching placemnet of answers and questions
-
-# api
-api.stackexchange.com/2.1
-
+1. fork it
+2. create your feature branch
+3. commit your changes
