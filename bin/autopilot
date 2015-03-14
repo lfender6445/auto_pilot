@@ -54,7 +54,7 @@ class Application
     log.yellow 'would you like to continue with configuration defaults? y/n'
     answer = $stdin.gets.chomp
     unless answer == 'y'
-      log.out 'when ready, resume by running `autopilot`'
+      log.out 'when ready, resume by running: bundle exec autopilot'
       abort
     end
   end
