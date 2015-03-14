@@ -20,8 +20,8 @@ from there, you can [configure](https://github.com/lfender6445/auto_pilot/blob/m
 it is recommended you [sign up for an API key](http://api.stackexchange.com) prior to using autopilot
 
 ## screenshots
-![side by side](http://i.imgur.com/Ffbzequ.png)
-![question view](http://imgur.com/O206sol)
+- [side by side](http://i.imgur.com/Ffbzequ.png)
+- [question view](http://imgur.com/O206sol)
 
 ## contributing
 
