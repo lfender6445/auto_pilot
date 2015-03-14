@@ -126,14 +126,14 @@ class Application
           open(gitignore, 'a') do |f|
             f.puts '/auto_pilot_config.rb'
           end
-          log.green 'updated .gitignore'
+          log.green '- updated .gitignore'
         end
       end
     end
   end
 
   def already_updated_gitignore
-    File.read("#{ROOT}/.gitignore").match(CONF_TEMPLATE)
+    File.read("#{Dir.pwd}/.gitignore").match(CONF_TEMPLATE)
   end
 
   def download_answers_and_write_files
