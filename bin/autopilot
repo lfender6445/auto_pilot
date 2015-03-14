@@ -33,8 +33,8 @@ class Application
   private
 
   def ask_user_for_configuration
-    if File.exist?("#{ROOT}/#{CONF_TEMPLATE}")
-      log.out "found existing configuration at #{ROOT}/#{CONF_TEMPLATE}\n"
+    if File.exist?("#{Dir.pwd}/#{CONF_TEMPLATE}")
+      log.out "found existing configuration at #{Dir.pwd}/#{CONF_TEMPLATE}\n"
       load_configuration
     else
       log.out "do you want to create a configuration file? y/n\n"
@@ -62,7 +62,7 @@ class Application
   def update_config_with_user
     user = ask_for_user
     update_config_with_answer if user.nil? || user == ''
-    template = "#{ROOT}/#{CONF_TEMPLATE}"
+    template = "#{Dir.pwd}/#{CONF_TEMPLATE}"
     text = File.read(template)
     new_contents = text.gsub(/username/, AutoPilot.configuration.user)
     File.open(template, 'w') { |file| file.puts new_contents }
@@ -74,7 +74,7 @@ class Application
   end
 
   def load_configuration
-    load "#{ROOT}/#{CONF_TEMPLATE}"
+    load "#{Dir.pwd}/#{CONF_TEMPLATE}"
   end
   alias_method :reload_config, :load_configuration
 
@@ -82,16 +82,16 @@ class Application
     AutoPilot.configure do |config|
       config.user   = ask_for_user
       config.format = [:md]
-      config.folder = "#{ROOT}/stackoverflow"
+      config.folder = "#{Dir.pwd}/stackoverflow"
       config.disable_front_matter = false
       config.max_pages = 1
-      config.date = { start: '2000-01-00', end: todays_date }
+      # config.date = { start: '2000-01-00', end: todays_date }
     end
   end
 
-  def todays_date
-    Time.now.to_s.split(' ').first
-  end
+  # def todays_date
+  #   Time.now.to_s.split(' ').first
+  # end
 
   def ask_for_user
     log.out "enter a stackoverflow username:\n"
@@ -117,7 +117,7 @@ class Application
   end
 
   def update_gitignore
-    gitignore = "#{ROOT}/.gitignore"
+    gitignore = "#{Dir.pwd}/.gitignore"
     if File.exist?(gitignore)
       unless already_updated_gitignore
         log.green 'would you like to add configuration to .gitignore? y/n'

@@ -1,5 +1,7 @@
 
 AutoPilot.configure do |config|
+  # string or nil - your application key (optional, allows for more requests)
+  config.key = nil
   # string - a stackoverflow username
   config.user = 'username'
   # string - where to put markdown and html files
@@ -11,8 +13,6 @@ AutoPilot.configure do |config|
   # integer - max pages when crawling paginated answers on your user page
   # config.max_pages = 50
   config.max_pages = 2
-  # string or nil - your application key (optional, allows for more requests)
-  config.key = nil
   # integer - time to wait between http requests (optional, eg 3 is 3 seconds)
   config.throttle = 3
 
