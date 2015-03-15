@@ -137,7 +137,6 @@ class Application
   end
 
   def download_answers_and_write_files
-    # AutoPilot.write_files(AutoPilot.get_answers)
     AutoPilot.write_files(AutoPilot.get_api_answers)
   end
 
