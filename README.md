@@ -31,6 +31,6 @@ it is recommended you [sign up for an API key](http://stackapps.com/apps/oauth/r
 
 ## todo
 
-support date of answer in filenames
-get questions after date 2015-03-01
-support embed of original question url
+- support date of answer in filenames
+- get questions after date 2015-03-01
+- support embed of original question url
