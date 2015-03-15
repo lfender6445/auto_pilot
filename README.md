@@ -21,7 +21,7 @@ it is recommended you [sign up for an API key](http://stackapps.com/apps/oauth/r
 
 ## screenshots
 - [side by side](http://i.imgur.com/Ffbzequ.png)
-- [question view](http://imgur.com/O206sol)
+- [question view](http://i.imgur.com/O206sol.png)
 
 ## contributing
 
