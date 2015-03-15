@@ -15,9 +15,9 @@ in its current form, autopilot will fetch questions you've answered (with a scor
 - install via `bundle`
 - run `autopilot` from command line
 
-from there, you can [configure](https://github.com/lfender6445/auto_pilot/blob/master/lib/auto_pilot/templates/auto_pilot_config.rb) and tweak how autopilot performs
+from there, you can [configure](https://github.com/lfender6445/auto_pilot/blob/master/lib/auto_pilot/templates/auto_pilot_config.rb) auto_pilot's performance
 
-it is recommended you [sign up for an API key](http://api.stackexchange.com) prior to using autopilot
+it is recommended you [sign up for an API key](http://stackapps.com/apps/oauth/register) prior to use
 
 ## screenshots
 - [side by side](http://i.imgur.com/Ffbzequ.png)
@@ -33,3 +33,4 @@ it is recommended you [sign up for an API key](http://api.stackexchange.com) pri
 
 support date of answer in filenames
 get questions after date 2015-03-01
+support embed of original question url
