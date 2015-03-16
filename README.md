@@ -11,7 +11,7 @@ in its current form, autopilot will fetch questions you've answered (with a scor
 
 # install + usage
 
-- add `gem 'auto_pilot', '~> 0.2.0'` to gemfile
+- add `gem 'auto_pilot', '~> 0.3.0'` to gemfile
 - install via `bundle`
 - run `autopilot` from command line
 
