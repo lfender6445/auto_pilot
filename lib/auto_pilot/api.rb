@@ -47,17 +47,19 @@ module AutoPilot
 
     def user_id
       throttle
-      if user_response.data
+      if user_response.data.length
         user_response.data.first.user_id
       else
         if error = user_response.error
           fail "#{error.error_message} | #{error.error_name} | #{error.error_code}"
+        else
+          fail "could not find user data for #{AutoPilot.configuration.user}"
         end
       end
     end
 
     def user_response
-      @response ||= RubyStackoverflow.users(inname: user)
+      @response ||= RubyStackoverflow.users(name: user)
     end
 
     def filtered(answers)
