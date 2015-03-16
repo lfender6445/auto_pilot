@@ -51,12 +51,8 @@ class Application
   end
 
   def ask_user_to_keep_going
-    log.yellow 'would you like to continue with configuration defaults? y/n'
-    answer = $stdin.gets.chomp
-    unless answer == 'y'
-      log.out 'when ready, resume by running: bundle exec autopilot'
-      abort
-    end
+    log.out 'please review your configuration at ./auto_pilot_config.rb - you can resume by running `bundle exec autopilot`'
+    abort
   end
 
   def update_config_with_user
