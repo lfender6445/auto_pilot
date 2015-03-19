@@ -11,7 +11,7 @@ in its current form, autopilot will fetch questions for a specifc user and conve
 
 # install + usage
 
-- add `gem 'auto_pilot', '~> 0.3.0'` to gemfile
+- add `gem 'auto_pilot', '~> 0.3.0'` to gemfile as development dependency
 - install via `bundle`
 
 ## how do i
@@ -37,9 +37,7 @@ checkout the [demo application](https://github.com/lfender6445/auto_pilot_demo) 
 3. commit your changes
 
 ## todo
-
-- support date of answer in filenames
-- get questions after date 2015-03-01
-- support embed of original question url
-- add documenation for template customization
-- add demo repo
+- change file naming convention to date question answered
+- update configuration options
+  - get questions after date x
+  - add credit_sources
