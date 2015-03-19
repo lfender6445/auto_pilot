@@ -7,7 +7,7 @@
 
 use this ruby gem to convert your [stackoverflow](http://www.stackoverflow.com/) profile to a [jekyll blog](http://jekyllrb.com/)
 
-in its current form, autopilot will fetch questions for a specifc user and convert them to markdown (jekyll ready) or html
+autopilot will fetch questions for a specifc user and convert them to markdown or html.
 
 ## how do i
 - install autpilot?
@@ -26,6 +26,11 @@ checkout the [demo application](https://github.com/lfender6445/auto_pilot_demo) 
 - we can update our configuration with an override of [MarkdownConverter#md_template](https://github.com/lfender6445/auto_pilot/blob/e6fd551d64d27cd2a813bb71e6c0997eee9196d2/lib/auto_pilot/markdown_converter.rb#L25)
 - for html, override [HTMLConverter#html_template](https://github.com/lfender6445/auto_pilot/blob/e6fd551d64d27cd2a813bb71e6c0997eee9196d2/lib/auto_pilot/html_converter.rb#L27)
 - [example of config with template overrides](https://github.com/lfender6445/auto_pilot_demo/blob/custom_templates/auto_pilot_config.rb#L21)
+
+## do i have to use jekyll?
+no. we are just generating partials, so they could be used outstide of jekyll and imported to other projects with ease.
+
+just make sure to set `disable_front_matter = true` in your configuration when using markdown templates.
 
 ### screenshots
 
