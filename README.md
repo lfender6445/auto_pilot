@@ -32,7 +32,7 @@ checkout the [demo application](https://github.com/lfender6445/auto_pilot_demo) 
 ## do i have to use jekyll?
 no. we are just generating partials, so they could be used outstide of jekyll and imported to other projects like rails or wordpress with ease
 
-just make sure to set `disable_front_matter = true` in your configuration when using markdown templates
+just make sure to set `disable_front_matter = true` in your configuration when using markdown templates.
 
 ### screenshots
 
