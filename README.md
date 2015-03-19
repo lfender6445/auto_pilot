@@ -17,12 +17,12 @@ in its current form, autopilot will fetch questions you've answered and convert 
 
 from there, you can [configure](https://github.com/lfender6445/auto_pilot/blob/master/lib/auto_pilot/templates/auto_pilot_config.rb) auto_pilot's behavior
 
-## demo application
-you are encourage to checkout the [https://github.com/lfender6445/auto_pilot_demohttps://github.com/lfender6445/auto_pilot_demo](demo application) and experiement
-
 ## how do i
 - [customize templates?](https://github.com/lfender6445/auto_pilot_demo#customize-templates)
 - [register for an API key?](http://stackapps.com/apps/oauth/register)
+
+## demo application
+checkout the [demo application](https://github.com/lfender6445/auto_pilot_demo) and experiment
 
 ### screenshots
 
