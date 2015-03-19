@@ -18,6 +18,8 @@ in its current form, autopilot will fetch questions you've answered and convert 
 from there, you can [configure](https://github.com/lfender6445/auto_pilot/blob/master/lib/auto_pilot/templates/auto_pilot_config.rb) auto_pilot's behavior
 
 ## how do i
+- [configure](https://github.com/lfender6445/auto_pilot/blob/master/lib/auto_pilot/templates/auto_pilot_config.rb) autopilot
+  - just run `autopilot` from the command line. this will generate a config in the root of your project.
 - [customize templates?](https://github.com/lfender6445/auto_pilot_demo#customize-templates)
 - [register for an API key?](http://stackapps.com/apps/oauth/register)
 
