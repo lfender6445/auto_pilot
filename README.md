@@ -16,11 +16,16 @@ in its current form, autopilot will fetch questions for a specifc user and conve
   - run `bundle exec autopilot` from command line to get started
 - [configure](https://github.com/lfender6445/auto_pilot/blob/master/lib/auto_pilot/templates/auto_pilot_config.rb) autopilot?
   - running `autopilot` from the command will generate a config in the root of your project
-- [customize templates?](https://github.com/lfender6445/auto_pilot_demo#customize-templates)
+- [customize templates?](#custom-templates)
 - [register for an API key?](http://stackapps.com/apps/oauth/register)
 
 ## demo application
 checkout the [demo application](https://github.com/lfender6445/auto_pilot_demo) and experiment
+
+## custom templates
+- we can update our configuration with an override of [MarkdownConverter#md_template](https://github.com/lfender6445/auto_pilot/blob/e6fd551d64d27cd2a813bb71e6c0997eee9196d2/lib/auto_pilot/markdown_converter.rb#L25)
+- for html, override [HTMLConverter#html_template](https://github.com/lfender6445/auto_pilot/blob/e6fd551d64d27cd2a813bb71e6c0997eee9196d2/lib/auto_pilot/html_converter.rb#L27)
+- [example of config with template overrides](https://github.com/lfender6445/auto_pilot_demo/blob/custom_templates/auto_pilot_config.rb#L21)
 
 ### screenshots
 
@@ -37,4 +42,4 @@ checkout the [demo application](https://github.com/lfender6445/auto_pilot_demo) 
 - change file naming convention to date question answered
 - update configuration options
   - get questions after date x
-  - add credit_sources
+  - credit sources
