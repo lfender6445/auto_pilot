@@ -31,5 +31,5 @@ coverage
 /blog/
 /stackoverflow/
 test/stackoverflow
-/auto_pilot_config.rb
 /.env
+/auto_pilot_config.rb

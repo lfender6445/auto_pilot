@@ -41,7 +41,7 @@ module AutoPilot
       if key = AutoPilot.configuration.key
         RubyStackoverflow.configure { |config| config.client_key = key }
       else
-        Log.yellow 'by adding an api key to your config you can execute more requests - http://api.stackexchange.com/'
+        Log.yellow 'you can execute more requests with an API key - http://api.stackexchange.com/'
       end
     end
 

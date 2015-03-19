@@ -7,7 +7,7 @@ module AutoPilot
       attr_accessor :message
 
       def out(text)
-        $stdout.write text
+        $stdout.write "#{text}\n"
       end
 
       def colorize(text, color_code)
