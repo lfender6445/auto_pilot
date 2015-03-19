@@ -9,16 +9,13 @@ use this ruby gem to convert your [stackoverflow](http://www.stackoverflow.com/)
 
 in its current form, autopilot will fetch questions for a specifc user and convert them to markdown (jekyll ready) or html
 
-# install + usage
-
-- add `gem 'auto_pilot', '~> 0.3.0'` to gemfile as development dependency
-- install via `bundle`
-
 ## how do i
+- install autpilot?
+  - add `gem 'auto_pilot', '~> 0.3.0'` to gemfile as development dependency
 - use autopilot?
   - run `bundle exec autopilot` from command line to get started
 - [configure](https://github.com/lfender6445/auto_pilot/blob/master/lib/auto_pilot/templates/auto_pilot_config.rb) autopilot?
-  - just run `autopilot` from the command line. this will generate a config in the root of your project.
+  - running `autopilot` from the command will generate a config in the root of your project
 - [customize templates?](https://github.com/lfender6445/auto_pilot_demo#customize-templates)
 - [register for an API key?](http://stackapps.com/apps/oauth/register)
 
