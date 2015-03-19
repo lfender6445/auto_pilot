@@ -1,4 +1,3 @@
-
 AutoPilot.configure do |config|
   # string or nil - your application key (optional, allows for more requests)
   config.key = nil
