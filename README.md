@@ -51,3 +51,4 @@ you will also want to set `disable_front_matter = true` in your config when usin
 - update config options
   - get questions after date x
   - credit sources
+  - support erb templates
