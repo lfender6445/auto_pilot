@@ -54,6 +54,8 @@ class Application
     log.out 'would you like to modify your configuration? y/n'
     answer = $stdin.gets.chomp
     if  answer == 'y'
+      log.out 'update ./auto_pilot_config.rb, resume by running `autopilot`'
+
       abort
     end
   end
