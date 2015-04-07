@@ -3,7 +3,7 @@ module AutoPilot
   class API
     attr_reader :user, :options, :answers
 
-    def initialize(user = AutoPilot.configuration.user, options = {})
+    def initialize(user = AutoPilot.configuration.id, options = {})
       @user    = user
       @options = options
       @answers = []
@@ -11,10 +11,17 @@ module AutoPilot
     end
 
     def get_answers
-      Log.green "fetching information for #{AutoPilot.configuration.user} via stackoverflow api"
+      Log.green "fetching information for id #{AutoPilot.configuration.id} via stackoverflow api"
       pages.each do |page|
-        response = answer_response(page)
-        answers << response.data.first.answers
+        begin
+          Log.green "fetching answers for page #{page}"
+          response = answer_response(page)
+          answers << response.data.first.answers
+        rescue => e
+          Log.red "An error occured: #{e}"
+          Log.red '- AutoPilot will continue downloading your answers'
+          break
+        end
         break unless response.has_more
       end
       filtered(answers)
@@ -34,7 +41,7 @@ module AutoPilot
     private
 
     def answer_response(page)
-      throttle { RubyStackoverflow.users_with_answers([user_id], 'page' => page) }
+      throttle { RubyStackoverflow.users_with_answers([AutoPilot.configuration.user_id], 'page' => page) }
     end
 
     def add_config_client_key
@@ -43,23 +50,6 @@ module AutoPilot
       else
         Log.yellow 'you can execute more requests with an API key - http://api.stackexchange.com/'
       end
-    end
-
-    def user_id
-      throttle
-      if user_response.data.length
-        user_response.data.first.user_id
-      else
-        if error = user_response.error
-          fail "#{error.error_message} | #{error.error_name} | #{error.error_code}"
-        else
-          fail "could not find user data for #{AutoPilot.configuration.user}"
-        end
-      end
-    end
-
-    def user_response
-      @response ||= RubyStackoverflow.users(name: user)
     end
 
     def filtered(answers)
@@ -71,7 +61,7 @@ module AutoPilot
           end
         end
       else
-        fail "could not find answers for #{AutoPilot.configuration.user}"
+        fail "could not find answers for id #{AutoPilot.configuration.user_id}"
       end
     end
 

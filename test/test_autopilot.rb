@@ -1,7 +1,9 @@
 require_relative 'helper'
 require 'webmock/minitest'
 class TestAutoPilot < MiniTest::Test
-  def setup; configure; end
+  def setup
+    configure
+  end
 
   describe '.page_with_my_answer' do
     it 'returns url' do
@@ -22,7 +24,9 @@ class TestAutoPilot < MiniTest::Test
 
   describe '.get_api_answers' do
     class AutoPilot::API
-      def get_answers; [{ answer_id: 123, question_id: 123 }]; end
+      def get_answers
+        [{ answer_id: 123, question_id: 123 }]
+      end
     end
     before do
       configure

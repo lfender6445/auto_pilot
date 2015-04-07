@@ -37,7 +37,7 @@ class Application
       log.out "found existing configuration at #{Dir.pwd}/#{CONF_TEMPLATE}"
       load_configuration
     else
-      log.out "do you want to create a configuration file? y/n"
+      log.out 'do you want to create a configuration file? y/n'
       answer = $stdin.gets.chomp
       if answer == 'y'
         add_configuration_file
@@ -61,11 +61,11 @@ class Application
   end
 
   def update_config_with_user
-    user = ask_for_user
-    update_config_with_answer if user.nil? || user == ''
+    id = ask_for_user_id
+    update_config_with_answer if id.nil? || id == ''
     template = "#{Dir.pwd}/#{CONF_TEMPLATE}"
     text = File.read(template)
-    new_contents = text.gsub(/username/, AutoPilot.configuration.user)
+    new_contents = text.gsub(/user_id/, AutoPilot.configuration.id)
     File.open(template, 'w') { |file| file.puts new_contents }
     reload_config
   end
@@ -77,27 +77,22 @@ class Application
 
   def use_default_configuration
     AutoPilot.configure do |config|
-      config.user   = ask_for_user
+      config.user_id   = ask_for_user_id
       config.format = [:md]
       config.folder = "#{Dir.pwd}/stackoverflow"
       config.disable_front_matter = false
-      config.max_pages = 1
-      # config.date = { start: '2000-01-00', end: todays_date }
+      config.max_pages = 2
     end
   end
 
-  # def todays_date
-  #   Time.now.to_s.split(' ').first
-  # end
-
-  def ask_for_user
-    log.out "enter a stackoverflow username:"
+  def ask_for_user_id
+    log.out 'enter a stackoverflow id:'
     answer = $stdin.gets.chomp
     if answer.nil? or answer == ''
-      log.red '- invalid username, try again'
-      ask_for_user
+      log.red '- invalid user id, try again'
+      ask_for_user_id
     else
-      AutoPilot.configuration.user = answer
+      AutoPilot.configuration.user_id = answer
     end
   end
 

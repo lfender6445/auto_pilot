@@ -18,8 +18,9 @@ unless ENV['DEBUG']
   module AutoPilot
     class Log
       class << self
-        def colorize(*args); end
-        def out(*args); end
+        def colorize(*_args); end
+
+        def out(*_args); end
       end
     end
   end
@@ -39,20 +40,14 @@ end
 module AutoPilot
   class API
     def answer_double
-      OpenStruct.new({
-        score: 1,
-        answer_id: 123,
-        question_id: 123
-      })
+      OpenStruct.new(score: 1,
+                     answer_id: 123,
+                     question_id: 123)
     end
 
-    def answer_response(*args)
+    def answer_response(*_args)
       # [{:answer_id=>123, :question_id=>123}]
-      OpenStruct.new( {
-        data: [ OpenStruct.new({
-          answers: [answer_double]
-         })]
-      })
+      OpenStruct.new(data: [OpenStruct.new(answers: [answer_double])])
     end
   end
 end

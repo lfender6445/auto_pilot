@@ -1,6 +1,6 @@
 def configure
   AutoPilot.configure do |config|
-    config.user   = 'foo'
+    config.user_id = '4727792'
     config.format = [:md, :html]
     config.folder = 'test/stackoverflow'
     config.disable_front_matter = false
@@ -18,7 +18,6 @@ def load_fixture_and_parse
   parsed_doc  = AutoPilot::DocumentParser.new(doc, question_id, answer_id)
   [parsed_doc]
 end
-
 
 def load_html_fixture
   @fixture ||= File.read(File.open("#{Dir.pwd}/test/fixtures/so_page.html", 'r'))

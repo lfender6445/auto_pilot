@@ -12,7 +12,7 @@ class TestConfigure < MiniTest::Test
     end
     assert_equal @subject.configuration.foo, 'bar'
 
-    assert_equal @subject.configuration.user, 'foo'
+    assert_equal @subject.configuration.user_id, '4727792'
     assert_equal @subject.configuration.format, [:md, :html]
     assert_equal @subject.configuration.folder, 'test/stackoverflow'
     assert_equal @subject.configuration.disable_front_matter, false
