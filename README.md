@@ -7,7 +7,7 @@
 
 a step forward in blog automation
 - use this ruby gem to convert your [stackoverflow](http://www.stackoverflow.com/) profile to a [jekyll blog](http://jekyllrb.com/) and [more](#do-i-have-to-use-jekyll)
-- fetch questions for a specifc user and convert them to markdown or html
+- fetch questions for a specifc user id and convert them to markdown or html
 
 ## how do i
 - __install autpilot?__
