@@ -65,7 +65,7 @@ class Application
     update_config_with_answer if id.nil? || id == ''
     template = "#{Dir.pwd}/#{CONF_TEMPLATE}"
     text = File.read(template)
-    new_contents = text.gsub(/user_id/, AutoPilot.configuration.id)
+    new_contents = text.gsub(/userid/, AutoPilot.configuration.user_id)
     File.open(template, 'w') { |file| file.puts new_contents }
     reload_config
   end

@@ -2,7 +2,7 @@ AutoPilot.configure do |config|
   # string or nil - your application key (optional, allows for more requests)
   config.key = nil
   # string - a valid stackoverflow id eg '4727792', can be found on your profile url
-  config.user_id = 'user_id'
+  config.user_id = 'userid'
   # integer - score must be greater than threshold in order to qualify for download
   config.score_threshold = -1
   # string - where to put markdown or html files

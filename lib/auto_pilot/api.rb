@@ -3,7 +3,7 @@ module AutoPilot
   class API
     attr_reader :user, :options, :answers
 
-    def initialize(user = AutoPilot.configuration.id, options = {})
+    def initialize(user = AutoPilot.configuration.user_id, options = {})
       @user    = user
       @options = options
       @answers = []
@@ -11,7 +11,7 @@ module AutoPilot
     end
 
     def get_answers
-      Log.green "fetching information for id #{AutoPilot.configuration.id} via stackoverflow api"
+      Log.green "fetching information for id #{AutoPilot.configuration.user_id} via stackoverflow api"
       pages.each do |page|
         begin
           Log.green "fetching answers for page #{page}"
