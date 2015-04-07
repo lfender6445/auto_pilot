@@ -86,7 +86,7 @@ class Application
   end
 
   def ask_for_user_id
-    log.out 'enter a stackoverflow id:'
+    log.out 'enter a stackoverflow id (can be found in your profile url):'
     answer = $stdin.gets.chomp
     if answer.nil? or answer == ''
       log.red '- invalid user id, try again'
