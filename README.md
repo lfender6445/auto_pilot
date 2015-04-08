@@ -37,7 +37,9 @@ customized templates are as easy as updating your config:
 ________________________
 
 ### do i have to use jekyll
-__no__. we are just generating partials from stackoverflow posts - they could be integrated with wordpress or rails projects with ease
+__no__. we are just generating partials from stackoverflow posts - they could be integrated with wordpress or rails projects with ease.
+
+afterall, its just html :)
 
 you will also want to set `disable_front_matter = true` in your config when using outside of jekyll
 
