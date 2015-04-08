@@ -41,7 +41,8 @@ module AutoPilot
     private
 
     def answer_response(page)
-      throttle { RubyStackoverflow.users_with_answers([AutoPilot.configuration.user_id], 'page' => page) }
+      # NOTE: id must be string
+      throttle { RubyStackoverflow.users_with_answers([AutoPilot.configuration.user_id.to_s], 'page' => page) }
     end
 
     def add_config_client_key

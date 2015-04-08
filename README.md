@@ -11,7 +11,7 @@ a step forward in blog automation
 
 ## how do i
 - __install autpilot?__
-  - add `gem 'auto_pilot', '~> 1.0.0'` to gemfile as development dependency
+  - add `gem 'auto_pilot', '~> 2.0.0'` to gemfile as development dependency
   - run `bundle install`
 - __use autopilot?__
   - run `bundle exec autopilot` from command line
