@@ -1,6 +1,7 @@
 # AutoPilot
 [![Travis CI](https://travis-ci.org/lfender6445/auto_pilot.svg?branch=master)](https://travis-ci.org/lfender6445/auto_pilot)
 [![Code Climate](https://codeclimate.com/github/lfender6445/auto_pilot/badges/gpa.svg)](https://codeclimate.com/github/lfender6445/auto_pilot)
+[![Gem Version](https://badge.fury.io/rb/auto_pilot.svg)](http://badge.fury.io/rb/auto_pilot)
 <!--
 [![Test Coverage](https://codeclimate.com/github/lfender6445/auto_pilot/badges/coverage.svg)](https://codeclimate.com/github/lfender6445/auto_pilot)
 -->
